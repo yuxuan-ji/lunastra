@@ -1,15 +1,5 @@
 export class Pipeline {
 
-  static registerFunction(f, label) {
-    f.label = label;
-    Pipeline.registeredFunctions[label] = f;
-  }
-
-  static getRegisteredFunction(label) {
-    if (!(label in Pipeline.registeredFunctions)) return null;
-    return Pipeline.registeredFunctions[label];
-  }
-
   constructor() {
     this._queue = [];
   }
@@ -55,5 +45,3 @@ export class Pipeline {
     this._queue = [];
   }
 }
-
-Pipeline.registeredFunctions = {};
