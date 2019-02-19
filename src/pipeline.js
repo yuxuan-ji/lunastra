@@ -19,6 +19,15 @@ export class Pipeline {
     if (!(label in Pipeline.registeredFunctions)) return null;
     return Pipeline.registeredFunctions[label];
   }
+
+  static push() {
+    var fs = Array.prototype.slice.call(arguments);
+
+    fs.forEach(function (f) {
+      this._queue.push(f);
+    }, this);
+  }
+
 }
 
 Pipeline.registeredFunctions = {};
