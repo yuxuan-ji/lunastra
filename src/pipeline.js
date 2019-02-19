@@ -17,9 +17,13 @@ export class Pipeline {
   }
 
   constructor() {
-    this.__queue = [];
+    this._queue = [];
   }
 
+  get queue() {
+    return this._queue;
+  }
+  
   push() {
     var fs = Array.prototype.slice.call(arguments);
 
@@ -53,6 +57,9 @@ export class Pipeline {
     this._queue.pop();
   }
 
+  clear() {
+    this._queue = [];
+  }
 }
 
 Pipeline.registeredFunctions = {};
