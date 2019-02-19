@@ -1,3 +1,5 @@
+import {Pipeline} from './pipeline.js';
+
 export class Index {
 
   constructor() {
@@ -5,6 +7,8 @@ export class Index {
     this._ref = 'id';
     this.index = {};
     this._idfCache = {};
+
+    this.pipeline = new Pipeline();
   }
 
 }
