@@ -36,4 +36,27 @@ export class DocumentStore {
     delete this.docsInfo[docRef];
     this.length--;
   }
+
+  getFieldLength(docRef, fieldName) {
+    if (docRef === null || docRef === undefined) return 0;
+
+    if (!(docRef in this.docs)) return 0;
+    if (!(fieldName in this.docInfo[docRef])) return 0;
+    return this.docInfo[docRef][fieldName];
+  };
+
+  addFieldLength(docRef, fieldName, length) {
+    if (docRef === null || docRef === undefined) return;
+    if (!this.has(docRef)) return;
+
+    if (!this.docInfo[docRef]) this.docInfo[docRef] = {};
+    this.docInfo[docRef][fieldName] = length;
+  }
+
+  updateFieldLength(docRef, fieldName, length) {
+    if (docRef === null || docRef === undefined) return;
+    if (!this.has(docRef)) return;
+
+    this.addFieldLength(docRef, fieldName, length);
+  }
 }
