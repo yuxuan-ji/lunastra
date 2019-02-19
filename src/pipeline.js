@@ -1,12 +1,6 @@
-import {warn} from './utils.js';
-
 export class Pipeline {
 
   static registerFunction(f, label) {
-    if (label in Pipeline.registeredFunctions) {
-      warn('Overwriting existing registered function: ' + label);
-    }
-
     f.label = label;
     Pipeline.registeredFunctions[label] = f;
   }
