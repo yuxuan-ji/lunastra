@@ -1,4 +1,5 @@
 import {Pipeline} from './pipeline.js';
+import {DocumentStore} from './document_store.js';
 
 export class Index {
 
@@ -9,6 +10,7 @@ export class Index {
     this._idfCache = {};
 
     this.pipeline = new Pipeline();
+    this.documentStore = new DocumentStore();
   }
 
 }
