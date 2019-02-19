@@ -23,7 +23,7 @@ export class Pipeline {
   get queue() {
     return this._queue;
   }
-  
+
   push() {
     var fs = Array.prototype.slice.call(arguments);
 
