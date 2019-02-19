@@ -34,7 +34,13 @@ export class Pipeline {
 
     this._queue.splice(pos + 1, 0, newFct);
   };
-  
+
+  static insertBefore(existingFct, newFct) {
+    var pos = this._queue.indexOf(existingFct);
+    if (pos === -1) throw new Error('Cannot find the the requested function to insert after');
+
+    this._queue.splice(pos, 0, newFct);
+  };
 }
 
 Pipeline.registeredFunctions = {};
