@@ -41,6 +41,17 @@ export class Pipeline {
 
     this._queue.splice(pos, 0, newFct);
   };
+
+  static remove(f) {
+    var pos = this._queue.indexOf(f);
+    if (pos === -1) return;
+
+    this._queue.splice(pos, 1);
+  };
+
+  static pop() {
+    this._queue.pop();
+  }
 }
 
 Pipeline.registeredFunctions = {};
