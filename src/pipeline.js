@@ -2,10 +2,6 @@ import {warn} from './utils.js';
 
 export class Pipeline {
 
-  constructor() {
-    this.__queue = [];
-  }
-
   static registerFunction(f, label) {
     if (label in Pipeline.registeredFunctions) {
       warn('Overwriting existing registered function: ' + label);
@@ -20,7 +16,11 @@ export class Pipeline {
     return Pipeline.registeredFunctions[label];
   }
 
-  static push() {
+  constructor() {
+    this.__queue = [];
+  }
+
+  push() {
     var fs = Array.prototype.slice.call(arguments);
 
     fs.forEach(function (f) {
@@ -28,30 +28,31 @@ export class Pipeline {
     }, this);
   }
 
-  static insertAfter(existingFct, newFct) {
+  insertAfter(existingFct, newFct) {
     var pos = this._queue.indexOf(existingFct);
     if (pos === -1) throw new Error('Cannot find the the requested function to insert after');
 
     this._queue.splice(pos + 1, 0, newFct);
   };
 
-  static insertBefore(existingFct, newFct) {
+  insertBefore(existingFct, newFct) {
     var pos = this._queue.indexOf(existingFct);
     if (pos === -1) throw new Error('Cannot find the the requested function to insert after');
 
     this._queue.splice(pos, 0, newFct);
   };
 
-  static remove(f) {
+  remove(f) {
     var pos = this._queue.indexOf(f);
     if (pos === -1) return;
 
     this._queue.splice(pos, 1);
   };
 
-  static pop() {
+  pop() {
     this._queue.pop();
   }
+
 }
 
 Pipeline.registeredFunctions = {};
