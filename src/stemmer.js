@@ -4,7 +4,7 @@
 
 export class Stemmer {
 
-  static stem() {
+  static stem(word) {
     var step2list = {
         "ational": "ate",
         "tional": "tion",
@@ -75,7 +75,7 @@ export class Stemmer {
     var re_5_1 = /ll$/;
     var re3_5 = new RegExp("^" + C + v + "[^aeiouwxy]$");
 
-    var porterStemmer = function porterStemmer(w) {
+    function porterStemmer(w) {
       var stem,
         suffix,
         firstch,
@@ -205,6 +205,6 @@ export class Stemmer {
       return w;
     };
 
-    return porterStemmer;
+    return porterStemmer(word);
   }
 }
