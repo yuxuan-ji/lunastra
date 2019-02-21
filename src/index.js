@@ -206,7 +206,7 @@ export class Index {
 
     // Do nothing if the boost is 0
     if (boost === 0) {
-      return;
+      return undefined;
     }
 
     queryTokens.forEach(function (token) {
