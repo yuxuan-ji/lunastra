@@ -25,7 +25,7 @@ export class Configuration {
     }
   }
 
-  get() {
+  get config() {
     return this.config;
   }
 
