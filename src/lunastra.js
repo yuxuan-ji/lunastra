@@ -17,3 +17,14 @@ export function init(config) {
   return index;
 }
 
+export * from './configuration.js';
+export * from './document_store.js';
+export * from './event_emitter.js';
+export * from './index.js';
+export * from './inverted_index.js';
+export * from './pipeline.js';
+export * from './stemmer.js';
+export * from './stop_word_filters.js';
+export * from './tokenizer.js';
+export * from './trimmer.js';
+export * from './utils.js';
