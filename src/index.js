@@ -20,6 +20,10 @@ export class Index {
     }).bind(this));
   }
 
+  get fields() {
+    return this.__fields.slice();
+  }
+
   on() {
     var args = Array.prototype.slice.call(arguments);
     return this.eventEmitter.addListener.apply(this.eventEmitter, args);
