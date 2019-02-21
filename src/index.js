@@ -24,6 +24,15 @@ export class Index {
     return this.__fields.slice();
   }
 
+  set ref(refName) {
+    this._ref = refName;
+  }
+
+  setRef(refName) {
+    this._ref = refName;
+    return this;
+  }
+
   on() {
     var args = Array.prototype.slice.call(arguments);
     return this.eventEmitter.addListener.apply(this.eventEmitter, args);
@@ -31,11 +40,6 @@ export class Index {
 
   off(name, fn) {
     return this.eventEmitter.removeListener(name, fn);
-  }
-
-  setRef(refName) {
-    this._ref = refName;
-    return this;
   }
 
   saveDocument(save) {
