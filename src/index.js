@@ -1,7 +1,7 @@
 import {Pipeline} from './pipeline.js';
 import {DocumentStore} from './document_store.js';
 import {EventEmitter} from './event_emitter.js';
-import {tokenize} from './tokenizer.js';
+import {Tokenizer} from './tokenizer.js';
 export class Index {
 
   constructor() {
@@ -55,7 +55,7 @@ export class Index {
 
     this.documentStore.add(docRef, doc);
     this._fields.forEach(function (field) {
-      var fieldTokens = this.pipeline.run(tokenize(doc[field]));
+      var fieldTokens = this.pipeline.run(Tokenizer.tokenize(doc[field]));
       this.documentStore.addFieldLength(docRef, field, fieldTokens.length);
 
       var tokenCount = {};
@@ -97,7 +97,7 @@ export class Index {
     this.documentStore.removeDoc(docRef);
 
     this._fields.forEach(function (field) {
-      var fieldTokens = this.pipeline.run(tokenize(doc[field]));
+      var fieldTokens = this.pipeline.run(Tokenizer.tokenize(doc[field]));
       fieldTokens.forEach(function (token) {
         this.index[field].removeToken(token, docRef);
       }, this);
