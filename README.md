@@ -1,2 +1,2 @@
 # lunastra
-The client-side search engine (In Dev)
+> A client-side full-text search engine.
