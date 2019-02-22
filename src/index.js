@@ -23,12 +23,8 @@ export class Index {
     }).bind(this));
   }
 
-  get fields() {
-    return this.__fields.slice();
-  }
-
-  set ref(refName) {
-    this._ref = refName;
+  getFields() {
+    return this._fields.slice();
   }
 
   setRef(refName) {
@@ -56,7 +52,7 @@ export class Index {
 
     var docRef = doc[this._ref];
 
-    this.documentStore.add(docRef, doc);
+    this.documentStore.addDoc(docRef, doc);
     this._fields.forEach(function (field) {
       var fieldTokens = this.pipeline.run(Tokenizer.tokenize(doc[field]));
       this.documentStore.addFieldLength(docRef, field, fieldTokens.length);
@@ -80,7 +76,7 @@ export class Index {
 
   removeDocByRef(docRef, emitEvent) {
     if (!docRef) return;
-    if (this.documentStore.save === false) {
+    if (this.documentStore.isDocStored() === false) {
       return;
     }
 

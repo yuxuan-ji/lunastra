@@ -10,30 +10,31 @@ export class DocumentStore {
     this.length = 0;
   }
 
-  get save() {return this._save;}
   get deepcpy() {return this._deepcpy;}
 
-  has(docRef) {
+  isDocStored() {return this._save;}
+
+  hasDoc(docRef) {
     return docRef in this.docs;
   }
 
-  get(docRef) {
-    if (this.has(docRef) === false) return null;
+  getDoc(docRef) {
+    if (this.hasDoc(docRef) === false) return null;
     return this.docs[docRef];
   }
 
-  add(docRef, doc) {
-    if (!this.has(docRef)) this.length++;
+  addDoc(docRef, doc) {
+    if (!this.hasDoc(docRef)) this.length++;
 
     this.docs[docRef] = this._save ? (this.deepcpy ? clone(doc) : doc) : null;
 
   }
 
-  remove(docRef) {
-    if (!this.has(docRef)) return;
+  removeDoc(docRef) {
+    if (!this.hasDoc(docRef)) return;
 
     delete this.docs[docRef];
-    delete this.docsInfo[docRef];
+    delete this.docInfo[docRef];
     this.length--;
   }
 
@@ -47,7 +48,7 @@ export class DocumentStore {
 
   addFieldLength(docRef, fieldName, length) {
     if (docRef === null || docRef === undefined) return;
-    if (!this.has(docRef)) return;
+    if (!this.hasDoc(docRef)) return;
 
     if (!this.docInfo[docRef]) this.docInfo[docRef] = {};
     this.docInfo[docRef][fieldName] = length;
@@ -55,7 +56,7 @@ export class DocumentStore {
 
   updateFieldLength(docRef, fieldName, length) {
     if (docRef === null || docRef === undefined) return;
-    if (!this.has(docRef)) return;
+    if (!this.hasDoc(docRef)) return;
 
     this.addFieldLength(docRef, fieldName, length);
   }

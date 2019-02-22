@@ -4,7 +4,7 @@ export class Pipeline {
     this._queue = [];
   }
 
-  get queue() {
+  get() {
     return this._queue;
   }
 
