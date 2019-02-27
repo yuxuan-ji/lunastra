@@ -1,43 +1,69 @@
+
 export class EventEmitter {
 
+  /**
+   * Initialize an event emitter
+   */
   constructor() {
     this.events = {};
   }
 
-  hasHandler(name) {
-    return name in this.events;
+  /**
+   * Check whether an event is registered
+   * @private
+   * @param {string} event
+   * @return {boolean}
+   */
+  hasHandler(event) {
+    return event in this.events;
   };
 
-  addListener() {
-    var args = Array.prototype.slice.call(arguments);
+  /**
+   * Bind a handler function to a specific event(s).
+   *
+   * Can bind a single function to many different events in one call.
+   *
+   * @param {string} events the name(s) of events to bind this function to
+   * @param {function} f the function to call when an event is fired
+   */
+  addListener(...args) {
     var f = args.pop();
-    var names = args;
+    var events = args;
 
     if (typeof f !== "function") throw new TypeError("Last argument must be a function");
 
-    names.forEach(function (name) {
-      if (!this.hasHandler(name)) this.events[name] = [];
-      this.events[name].push(f);
+    events.forEach(function (event) {
+      if (!this.hasHandler(event)) this.events[event] = [];
+      this.events[event].push(f);
     }, this);
   }
 
-  removeListener(name, f) {
-    if (!this.hasHandler(name)) return;
+  /**
+   * Unbind a handler from an event
+   * @param  {string} event
+   * @param  {function} f
+   */
+  removeListener(event, f) {
+    if (!this.hasHandler(event)) return;
 
-    var fIndex = this.events[name].indexOf(f);
+    var fIndex = this.events[event].indexOf(f);
     if (fIndex === -1) return;
 
-    this.events[name].splice(fIndex, 1);
+    this.events[event].splice(fIndex, 1);
 
-    if (this.events[name].length === 0) delete this.events[name];
+    if (this.events[event].length === 0) delete this.events[event];
   }
 
-  emit(name) {
-    if (!this.hasHandler(name)) return;
+  /**
+   * Emit an event
+   * @param  {string} event
+   */
+  emit(event) {
+    if (!this.hasHandler(event)) return;
 
     var args = Array.prototype.slice.call(arguments, 1);
 
-    this.events[name].forEach(function (f) {
+    this.events[event].forEach(function (f) {
       f.apply(undefined, args);
     }, this);
   }
