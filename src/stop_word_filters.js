@@ -1,5 +1,14 @@
+/**
+ * Pipeline Extension: StopWordFilter
+ */
 export class StopWordFilter {
 
+  /**
+   * Strip out stop words from the token and
+   * return the result
+   * @param  {string} token
+   * @return {string}
+   */
   static filter(token) {
     if (token && StopWordFilter.stopWords[token] !== true) {
       return token;
@@ -7,10 +16,17 @@ export class StopWordFilter {
     return undefined;
   }
 
+  /**
+   * Clears the inner list of stop words
+   */
   static clearStopWords() {
     StopWordFilter.stopWords = {};
   }
 
+  /**
+   * Register a list of stop words
+   * @param {string[]} words
+   */
   static addStopWords(words) {
     if (words == null || Array.isArray(words) === false) return;
 
@@ -19,6 +35,9 @@ export class StopWordFilter {
     }, this);
   }
 
+  /**
+   * Reset to use default stop words
+   */
   static resetStopWords() {
     StopWordFilter.stopWords = StopWordFilter.defaultStopWords;
   }
