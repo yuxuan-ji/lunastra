@@ -1,7 +1,16 @@
 import {clone} from './utils.js';
 
+/**
+ * A key-value document store used for storing sets of tokens for
+ * documents stored in the index.
+ */
 export class DocumentStore {
 
+  /**
+   * Initialize a document store
+   * @param  {boolean} save    whether to store original documents
+   * @param  {boolean} deepcpy whether to deep copy the original documents
+   */
   constructor(save = true, deepcpy = true) {
     this._save = (save !== false);
     this._deepcpy = (deepcpy !== false);
@@ -14,15 +23,30 @@ export class DocumentStore {
 
   isDocStored() {return this._save;}
 
+  /**
+   * Check whether a given document ref is stored
+   * @param  {string|number}  docRef
+   * @return {boolean}
+   */
   hasDoc(docRef) {
     return docRef in this.docs;
   }
 
+  /**
+   * Get a document by its ref
+   * @param  {string|number} docRef
+   * @return {object}
+   */
   getDoc(docRef) {
     if (this.hasDoc(docRef) === false) return null;
     return this.docs[docRef];
   }
 
+  /**
+   * Store a document or update it if it already exists
+   * @param {string|number} docRef
+   * @param {object} doc
+   */
   addDoc(docRef, doc) {
     if (!this.hasDoc(docRef)) this.length++;
 
@@ -30,6 +54,10 @@ export class DocumentStore {
 
   }
 
+  /**
+   * Remove a document from the store by its ref
+   * @param  {string|number} docRef
+   */
   removeDoc(docRef) {
     if (!this.hasDoc(docRef)) return;
 
@@ -38,6 +66,13 @@ export class DocumentStore {
     this.length--;
   }
 
+  /**
+   * Get the field length of a document by its ref
+   *
+   * @param {number|string} docRef document id or reference
+   * @param {string} fieldName field name
+   * @return {number} field length
+   */
   getFieldLength(docRef, fieldName) {
     if (docRef === null || docRef === undefined) return 0;
 
@@ -46,6 +81,14 @@ export class DocumentStore {
     return this.docInfo[docRef][fieldName];
   };
 
+  /**
+   * Add field length of a document's field tokens from pipeline results.
+   * The field length of a document is used to do field length normalization
+   * even without the original JSON document stored.
+   * @param {number|string} docRef document's id or reference
+   * @param {string} fieldName field name
+   * @param {number} length field length
+   */
   addFieldLength(docRef, fieldName, length) {
     if (docRef === null || docRef === undefined) return;
     if (!this.hasDoc(docRef)) return;
@@ -54,6 +97,14 @@ export class DocumentStore {
     this.docInfo[docRef][fieldName] = length;
   }
 
+  /**
+   * Update field length of a document's field tokens from pipeline results.
+   * The field length of a document is used to do field length normalization
+   * even without the original JSON document stored.
+   * @param {number|string} docRef document's id or reference
+   * @param {string} fieldName field name
+   * @param {number} length field length
+   */
   updateFieldLength(docRef, fieldName, length) {
     if (docRef === null || docRef === undefined) return;
     if (!this.hasDoc(docRef)) return;
