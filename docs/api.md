@@ -226,7 +226,7 @@ An event manager for Lunastra.
     * [new exports.EventEmitter()](#new_EventEmitter_new)
     * [.addListener(events, f)](#EventEmitter+addListener)
     * [.removeListener(event, f)](#EventEmitter+removeListener)
-    * [.emit(event)](#EventEmitter+emit)
+    * [.emit(event, ...args)](#EventEmitter+emit)
 
 <a name="new_EventEmitter_new"></a>
 
@@ -259,14 +259,15 @@ Unbind a handler from an event
 
 <a name="EventEmitter+emit"></a>
 
-### eventEmitter.emit(event)
+### eventEmitter.emit(event, ...args)
 Emit an event
 
 **Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
 
-| Param | Type |
-| --- | --- |
-| event | <code>string</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| event | <code>string</code> | the event to emit |
+| ...args | <code>any</code> | additional data that the event should expose |
 
 <a name="Index"></a>
 

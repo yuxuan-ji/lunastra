@@ -58,12 +58,11 @@ export class EventEmitter {
 
   /**
    * Emit an event
-   * @param  {string} event
+   * @param  {string} event the event to emit
+   * @param {...any} args additional data that the event should expose
    */
-  emit(event) {
+  emit(event, ...args) {
     if (!this.hasHandler(event)) return;
-
-    var args = Array.prototype.slice.call(arguments, 1);
 
     this.events[event].forEach(function (f) {
       f.apply(undefined, args);
