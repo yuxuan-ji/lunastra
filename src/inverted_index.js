@@ -1,9 +1,29 @@
 export class InvertedIndex {
 
+  /**
+   * Initialize an inverted index
+   */
   constructor() {
     this.root = { docs: {}, df: 0};
   }
 
+  /**
+     * Adds a {token: tokenInfo} pair to the inverted index.
+     * If the token already exist, then update the tokenInfo.
+     *
+     * tokenInfo format: { ref: 1, tf: 2}
+     * tokenInfo should contains the document's ref and the tf(token frequency) of that token in
+     * the document.
+     *
+     * By default this function starts at the root of the current inverted index, however
+     * it can start at any node of the inverted index if required.
+     *
+     * @param {string} token
+     * @param {object} tokenInfo format: { ref: 1, tf: 2}
+     * @param {object} root An optional node at which to start looking for the
+     * correct place to enter the doc, by default the root of this InvertedIndex
+     * is used.
+   */
   addToken(token, tokenInfo, root) {
     root = root || this.root;
 
@@ -25,6 +45,11 @@ export class InvertedIndex {
     }
   }
 
+  /**
+   * Check whether the token is stored in this inverted index
+   * @param  {string}  token
+   * @return {boolean}
+   */
   hasToken(token) {
     if (!token) return false;
 
@@ -38,6 +63,12 @@ export class InvertedIndex {
     return true;
   }
 
+  /**
+   * Get a node from the inverted index for a given token.
+   * If token not found in this InvertedIndex, return null.
+   * @param {string} token The token to get the node for.
+   * @return {object}
+   */
   getNode(token) {
     if (!token) return null;
 
@@ -51,6 +82,12 @@ export class InvertedIndex {
     return node;
   }
 
+  /**
+   * Get the documents of a given token.
+   * If token not found, return {}.
+   * @param {string} token The token to get the documents for.
+   * @return {object}
+   */
   getDocs(token) {
     var node = this.getNode(token);
     if (node == null) {
@@ -60,6 +97,13 @@ export class InvertedIndex {
     return node.docs;
   }
 
+  /**
+   * Get term frequency of given token in given document unique id.
+   * If token or document id not found, return 0.
+   * @param {string} token the token to get the documents for
+   * @param {string|number} docRef the unique id of the document
+   * @return {number}
+   */
   getTermFrequency(token, docRef) {
     var node = this.getNode(token);
 
@@ -74,6 +118,12 @@ export class InvertedIndex {
     return node.docs[docRef].tf;
   }
 
+  /**
+   * Get the document frequency of given token.
+   * If token not found, return 0.
+   * @param {string} token the token to get the documents for
+   * @return {object}
+   */
   getDocFreq(token) {
     var node = this.getNode(token);
 
@@ -84,6 +134,11 @@ export class InvertedIndex {
     return node.df;
   }
 
+  /**
+   * Remove the document identified by document's ref from the token in the inverted index.
+   * @param {string} token remove the document from token
+   * @param {string} ref the ref of the document to remove from given token
+   */
   removeToken(token, ref) {
     if (!token) return;
     var node = this.getNode(token);
@@ -96,6 +151,12 @@ export class InvertedIndex {
     }
   }
 
+  /**
+   * Find all the possible suffixes of given token using tokens currently in the inverted index.
+   * If token not found, return empty Array.
+   * @param {string} token the token to expand
+   * @return {string[]}
+   */
   expandToken(token, memo, root) {
     if (token == null || token === '') return [];
     memo = memo || [];
