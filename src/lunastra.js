@@ -3,6 +3,11 @@ import {Trimmer} from './trimmer.js';
 import {StopWordFilter} from './stop_word_filters.js';
 import {Stemmer} from './stemmer.js';
 
+/**
+ * A helper method to initialize a Lunastra Index
+ * @param  {object} config
+ * @return {Index}
+ */
 export function init(config) {
   var index = new Index();
 

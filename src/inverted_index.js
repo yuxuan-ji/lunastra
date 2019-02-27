@@ -1,3 +1,6 @@
+/**
+ * The entity on which queries are executed upon.
+ */
 export class InvertedIndex {
 
   /**

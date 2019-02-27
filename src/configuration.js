@@ -1,5 +1,8 @@
 import {warn} from './utils.js';
 
+/**
+ * A wrapper on a user search configuration.
+ */
 export class Configuration {
 
   /**

@@ -1,5 +1,8 @@
 import {toString} from './utils.js';
 
+/**
+ * A wrapper around how Lunastra tokenizes strings
+ */
 export class Tokenizer {
 
   /**

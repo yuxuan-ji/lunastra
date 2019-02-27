@@ -1,5 +1,5 @@
 /**
- * A pipeline is an ordered list of functions applied to both document
+ * An ordered list of functions applied to both document
  * tokens and query tokens.
  */
 export class Pipeline {

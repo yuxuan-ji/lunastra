@@ -5,6 +5,9 @@ import {InvertedIndex} from './inverted_index.js';
 import {Configuration} from './configuration.js';
 import {Tokenizer} from './tokenizer.js';
 
+/**
+ * The public facing API for Lunastra and global Index.
+ */
 export class Index {
 
   /**

@@ -1,4 +1,6 @@
-
+/**
+ * An event manager for Lunastra.
+ */
 export class EventEmitter {
 
   /**
