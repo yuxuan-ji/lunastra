@@ -7,6 +7,9 @@ import {Tokenizer} from './tokenizer.js';
 
 export class Index {
 
+  /**
+   * Initialize an index
+   */
   constructor() {
     this._fields = [];
     this._ref = 'id';
@@ -23,29 +26,66 @@ export class Index {
     }).bind(this));
   }
 
+  /**
+   * Return the fields registered in the index
+   * @return {string[]}
+   */
   getFields() {
     return this._fields.slice();
   }
 
-  setRef(refName) {
-    this._ref = refName;
+  /**
+   * Register a field in the index
+   * @param {string} fieldName
+   */
+  addField(fieldName) {
+    this._fields.push(fieldName);
+    this.index[fieldName] = new InvertedIndex();
     return this;
   }
 
-  on() {
-    var args = Array.prototype.slice.call(arguments);
+  /**
+   * Set the field used to unique indentify a document (default is 'id')
+   * @param {string} fieldName
+   */
+  setRef(fieldName) {
+    this._ref = fieldName;
+    return this;
+  }
+
+  /**
+   * Bind a handler to the specified events
+   * @param  {...string} events
+   * @param {function} f
+   */
+  on(...args) {
     return this.eventEmitter.addListener.apply(this.eventEmitter, args);
   }
 
-  off(name, fn) {
-    return this.eventEmitter.removeListener(name, fn);
+  /**
+   * Unbind a handler from an event
+   * @param  {string} event
+   * @param  {function} f
+   */
+  off(event, fn) {
+    return this.eventEmitter.removeListener(event, fn);
   }
 
+  /**
+   * Sets whether origin JSON documents are stored
+   * @param  {boolean} save default true
+   * @return {this}
+   */
   saveDocument(save) {
     this.documentStore = new DocumentStore(save);
     return this;
   }
 
+  /**
+   * Adds a document to the index
+   * @param {object} doc
+   * @param {boolean} emitEvent whether an event should be triggered
+   */
   addDoc(doc, emitEvent) {
     if (!doc) return;
     emitEvent = (emitEvent === undefined) ? true : emitEvent;
@@ -74,6 +114,11 @@ export class Index {
     if (emitEvent) this.eventEmitter.emit('add', doc, this);
   }
 
+  /**
+   * Remove a document from the index by its unique id
+   * @param  {string|number} docRef
+   * @param  {boolean} emitEvent whether an event should be triggered
+   */
   removeDocByRef(docRef, emitEvent) {
     if (!docRef) return;
     if (this.documentStore.isDocStored() === false) {
@@ -85,6 +130,11 @@ export class Index {
     this.removeDoc(doc, false);
   }
 
+  /**
+   * Remove a document from the index
+   * @param  {object} doc
+   * @param  {boolean} emitEvent whether an event should be triggered
+   */
   removeDoc(doc, emitEvent) {
     if (!doc) return;
 
@@ -105,6 +155,11 @@ export class Index {
     if (emitEvent) this.eventEmitter.emit('remove', doc, this);
   }
 
+  /**
+   * Update a document in the index
+   * @param  {object} doc
+   * @param  {boolean} emitEvent whether an event should be triggered
+   */
   updateDoc(doc, emitEvent) {
     emitEvent = emitEvent === undefined ? true : emitEvent;
 
@@ -114,23 +169,28 @@ export class Index {
     if (emitEvent) this.eventEmitter.emit('update', doc, this);
   }
 
-  addField(fieldName) {
-    this._fields.push(fieldName);
-    this.index[fieldName] = new InvertedIndex();
-    return this;
-  }
-
-  idf(term, field) {
-    var cacheKey = "@" + field + '/' + term;
-    if (Object.prototype.hasOwnProperty.call(this._idfCache, cacheKey)) return this._idfCache[cacheKey];
-
-    var df = this.index[field].getDocFreq(term);
-    var idf = 1 + Math.log(this.documentStore.length / (df + 1));
-    this._idfCache[cacheKey] = idf;
-
-    return idf;
-  }
-
+  /**
+   * Searches the index using the passed query.
+   * Queries should be a string, multiple words are allowed.
+   *
+   * If config is null, will search all fields defaultly, and lead to OR based query.
+   * If config is specified, will search specified with query time boosting.
+   *
+   * All query tokens are passed through the same pipeline that document tokens
+   * are passed through, so any language processing involved will be run on every
+   * query term.
+   *
+   * Each query term is expanded, so that the term 'he' might be expanded to
+   * 'hello' and 'help' if those terms were already included in the index.
+   *
+   * Matching documents are returned as an array of objects, each object contains
+   * the matching document ref, as set for this index, and the similarity score
+   * for this document against the query.
+   *
+   * @param {string} query The query to search the index with.
+   * @param {JSON} userConfig The user query config, JSON format.
+   * @return {object}
+   */
   search(query, userConfig) {
     if (!query) return [];
     if (typeof query === 'string') {
@@ -193,6 +253,14 @@ export class Index {
     return results;
   }
 
+  /**
+   * Search a list of tokens within a field
+   * @private
+   * @param  {string[]} queryTokens
+   * @param  {string} fieldName
+   * @param  {Configuration} config
+   * @return {object}
+   */
   fieldSearch(queryTokens, fieldName, config) {
     var booleanType = config[fieldName].bool;
     var expand = config[fieldName].expand;
@@ -263,6 +331,16 @@ export class Index {
     return scores;
   }
 
+  /**
+   * Merge the scores from one set of tokens into an accumulated score table.
+   * Exact operation depends on the op parameter. If op is 'AND', then only the
+   * intersection of the two score lists is retained. Otherwise, the union of
+   * the two score lists is returned.
+   * @private
+   * @param {boolean} accumScores should be null on first call
+   * @param {object} scores new scores to merge into accumScores
+   * @param {string} op merge operation (should be 'AND' or 'OR')
+   */
   mergeScores(accumScores, scores, op) {
     if (!accumScores) {
       return scores;
@@ -287,6 +365,13 @@ export class Index {
     return accumScores;
   }
 
+  /**
+   * Record query tokens of retrieved documents
+   * @private
+   * @param  {object} docTokens
+   * @param  {string} token
+   * @param  {object} docs
+   */
   fieldSearchStats(docTokens, token, docs) {
     for (var doc in docs) {
       if (doc in docTokens) {
@@ -297,6 +382,32 @@ export class Index {
     }
   }
 
+  /**
+   * Calculate the inverse document frequency of a term within a field
+   * @private
+   * @param  {string} term
+   * @param  {string} field
+   * @return {number}
+   */
+  idf(term, field) {
+    var cacheKey = "@" + field + '/' + term;
+    if (Object.prototype.hasOwnProperty.call(this._idfCache, cacheKey)) return this._idfCache[cacheKey];
+
+    var df = this.index[field].getDocFreq(term);
+    var idf = 1 + Math.log(this.documentStore.length / (df + 1));
+    this._idfCache[cacheKey] = idf;
+
+    return idf;
+  }
+
+  /**
+   * Get the normalized coordination factor
+   * @private
+   * @param  {object} scores
+   * @param  {oobject} docTokens
+   * @param  {number} n
+   * @return {object}
+   */
   coordNorm(scores, docTokens, n) {
     for (var doc in scores) {
       if (!(doc in docTokens)) continue;
@@ -305,12 +416,6 @@ export class Index {
     }
 
     return scores;
-  }
-
-  use(plugin) {
-    var args = Array.prototype.slice.call(arguments, 1);
-    args.unshift(this);
-    plugin.apply(this, args);
   }
 
 }
