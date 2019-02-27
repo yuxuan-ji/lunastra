@@ -2,6 +2,11 @@ import {warn} from './utils.js';
 
 export class Configuration {
 
+  /**
+   * Initialize a configuration
+   * @param  {string} config
+   * @param  {string[]} fields
+   */
   constructor(config, fields) {
     config = config || '';
 
@@ -25,14 +30,26 @@ export class Configuration {
     }
   }
 
+  /**
+   * Get current user config
+   * @return {JSON}
+   */
   get() {
     return this.config;
   }
 
+  /**
+   * Reset user search configuration
+   */
   reset() {
     this.config = {};
   }
 
+  /**
+   * Build default search configuration
+   * @private
+   * @param  {string[]} fields
+   */
   buildDefaultConfig(fields) {
     this.reset();
     fields.forEach(function (field) {
@@ -44,6 +61,12 @@ export class Configuration {
     }, this);
   }
 
+  /**
+   * Build user search configuration
+   * @private
+   * @param  {JSON} config
+   * @param  {string[]} fields
+   */
   buildUserConfig(config, fields) {
     var globalBool = "OR";
     var globalExpand = false;
@@ -80,6 +103,12 @@ export class Configuration {
     }
   }
 
+  /**
+   * Add a fields to user search configuration
+   * @param {string} bool   Boolean model
+   * @param {string} expand Expand model
+   * @param {string[]} fields fields of the index instance
+   */
   addAllFieldsToUserConfig(bool, expand, fields) {
     fields.forEach(function (field) {
       this.config[field] = {
