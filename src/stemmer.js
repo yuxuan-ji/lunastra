@@ -2,8 +2,17 @@
 /* eslint max-len: 0 */
 /* eslint brace-style: 0 */
 
+/**
+ * Pipeline Extension: Stemmer
+ */
 export class Stemmer {
 
+  /**
+   * Reduce a word to its root and return the result
+   * (implementation of the PorterStemmer taken from http://tartarus.org/~martin)
+   * @param  {string} word
+   * @return {string}
+   */
   static stem(word) {
     var step2list = {
         "ational": "ate",
