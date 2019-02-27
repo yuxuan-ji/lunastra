@@ -12,7 +12,7 @@ documents stored in the index.</p>
 <dd><p>An event manager for Lunastra.</p>
 </dd>
 <dt><a href="#Index">Index</a></dt>
-<dd><p>The public facing API for Lunastra and global Index.</p>
+<dd><p>A dataset maintained by Lunastra and exposing its public facing API.</p>
 </dd>
 <dt><a href="#InvertedIndex">InvertedIndex</a></dt>
 <dd><p>The entity on which queries are executed upon.</p>
@@ -272,7 +272,7 @@ Emit an event
 <a name="Index"></a>
 
 ## Index
-The public facing API for Lunastra and global Index.
+A dataset maintained by Lunastra and exposing its public facing API.
 
 **Kind**: global class  
 
@@ -315,7 +315,7 @@ Register a field in the index
 <a name="Index+setRef"></a>
 
 ### index.setRef(fieldName)
-Set the field used to unique indentify a document (default is 'id')
+Set the field used to uniquely identify a document (default is 'id')
 
 **Kind**: instance method of [<code>Index</code>](#Index)  
 

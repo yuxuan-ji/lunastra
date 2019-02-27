@@ -6,7 +6,7 @@ import {Configuration} from './configuration.js';
 import {Tokenizer} from './tokenizer.js';
 
 /**
- * The public facing API for Lunastra and global Index.
+ * A dataset maintained by Lunastra and exposing its public facing API.
  */
 export class Index {
 
@@ -48,7 +48,7 @@ export class Index {
   }
 
   /**
-   * Set the field used to unique indentify a document (default is 'id')
+   * Set the field used to uniquely identify a document (default is 'id')
    * @param {string} fieldName
    */
   setRef(fieldName) {
