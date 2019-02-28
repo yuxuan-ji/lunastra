@@ -13,7 +13,7 @@ export class Stemmer {
    * @param  {string} word
    * @return {string}
    */
-  static stem(word) {
+  static run(word) {
     var step2list = {
         "ational": "ate",
         "tional": "tion",

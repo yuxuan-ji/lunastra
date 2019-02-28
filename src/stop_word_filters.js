@@ -9,7 +9,7 @@ export class StopWordFilter {
    * @param  {string} token
    * @return {string}
    */
-  static filter(token) {
+  static run(token) {
     if (token && StopWordFilter.stopWords[token] !== true) {
       return token;
     }

@@ -91,7 +91,7 @@ export class Pipeline {
     for (var i = 0; i < queueLength; i++) {
       var pipelineOutput = [];
       for (let j = 0; j < out.length; j++) {
-        var output = this._queue[i](out[j], j, out);
+        var output = this._queue[i].run(out[j], j, out);
         if (!Array.isArray(output)) output = [output];
         for (var k = 0; k < output.length; k++) {
           if (output[k] !== null && output[k] !== void 0) {
