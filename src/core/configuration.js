@@ -1,4 +1,4 @@
-import {warn} from './utils.js';
+import {warn} from '../utils/utils.js';
 
 /**
  * A wrapper on a user search configuration.

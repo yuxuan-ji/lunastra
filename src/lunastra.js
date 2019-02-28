@@ -1,7 +1,7 @@
 import {Index} from './index.js';
-import {Trimmer} from './trimmer.js';
-import {StopWordFilter} from './stop_word_filters.js';
-import {Stemmer} from './stemmer.js';
+import {Trimmer} from './exts/trimmer.js';
+import {StopWordFilter} from './exts/stop_word_filters.js';
+import {Stemmer} from './exts/stemmer.js';
 
 /**
  * A helper method to initialize a Lunastra Index
@@ -22,14 +22,14 @@ export function init(config) {
   return index;
 }
 
-export * from './configuration.js';
-export * from './document_store.js';
-export * from './event_emitter.js';
 export * from './index.js';
-export * from './inverted_index.js';
-export * from './pipeline.js';
-export * from './stemmer.js';
-export * from './stop_word_filters.js';
-export * from './tokenizer.js';
-export * from './trimmer.js';
-export * from './utils.js';
+export * from './core/configuration.js';
+export * from './core/document_store.js';
+export * from './core/tokenizer.js';
+export * from './core/inverted_index.js';
+export * from './core/pipeline.js';
+export * from './events/event_emitter.js';
+export * from './exts/stemmer.js';
+export * from './exts/stop_word_filters.js';
+export * from './exts/trimmer.js';
+export * from './utils/utils.js';

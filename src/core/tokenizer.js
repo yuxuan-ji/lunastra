@@ -1,4 +1,4 @@
-import {toString} from './utils.js';
+import {toString} from '../utils/utils.js';
 
 /**
  * A wrapper around how Lunastra tokenizes strings

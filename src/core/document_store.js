@@ -1,4 +1,4 @@
-import {clone} from './utils.js';
+import {clone} from '../utils/utils.js';
 
 /**
  * A key-value document store used for storing sets of tokens for

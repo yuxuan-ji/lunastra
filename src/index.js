@@ -1,9 +1,9 @@
-import {Pipeline} from './pipeline.js';
-import {DocumentStore} from './document_store.js';
-import {EventEmitter} from './event_emitter.js';
-import {InvertedIndex} from './inverted_index.js';
-import {Configuration} from './configuration.js';
-import {Tokenizer} from './tokenizer.js';
+import {Pipeline} from './core/pipeline.js';
+import {DocumentStore} from './core/document_store.js';
+import {InvertedIndex} from './core/inverted_index.js';
+import {Configuration} from './core/configuration.js';
+import {Tokenizer} from './core/tokenizer.js';
+import {EventEmitter} from './events/event_emitter.js';
 
 /**
  * A dataset maintained by Lunastra and exposing its public facing API.
