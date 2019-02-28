@@ -1,7 +1,7 @@
 # lunastra
 > A client-side full-text search engine.
 
-Lunastra is a full-text search engine with focus on customization. It started out as a partial ES6 port of [Elasticlunr](https://github.com/weixsong/elasticlunr.js) (you can find the initial es6 ported module in the _base_ branch) and has been heavily revamped with new behaviour, structure, features and APIs.
+Lunastra is a full-text search engine with focus on customization. 
 
 ## Installation & Usage
 
@@ -47,6 +47,9 @@ Run tests:
 npm run test
 ```
 
+## Acknowledgement
+
+Lunastra was built upon a partial ES6 port of [Elasticlunr](https://github.com/weixsong/elasticlunr.js) (you can find the initial es6 ported module in the _base_ branch).
 
 ## Contributing
 
