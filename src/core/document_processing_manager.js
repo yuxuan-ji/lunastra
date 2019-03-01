@@ -14,12 +14,12 @@ export class DocumentProcessingManager {
 
   }
 
-  addPreExtension() {
-
+  addPreConversion(...fs) {
+    this._preconversion.add(...fs);
   }
 
-  addPostExtension() {
-
+  addPostConversion(...fs) {
+    this._postconversion.add(...fs);
   }
 
   run() {
