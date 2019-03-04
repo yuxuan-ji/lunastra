@@ -1,6 +1,8 @@
 # lunastra
 > A client-side full-text search engine.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d0b878e7ade34055a63c265663797537)](https://www.codacy.com/app/yuxuan98/lunastra?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yuxuan-ji/lunastra&amp;utm_campaign=Badge_Grade)
+
 Lunastra is a full-text search engine with focus on customization. 
 
 ## Installation & Usage
