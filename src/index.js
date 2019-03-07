@@ -89,9 +89,8 @@ export class Index {
    * @param {object} doc
    * @param {boolean} emitEvent whether an event should be triggered
    */
-  addDoc(doc, emitEvent) {
+  addDoc(doc, emitEvent = true) {
     if (!doc) return;
-    emitEvent = (emitEvent === undefined) ? true : emitEvent;
 
     var docRef = doc[this._ref];
 
@@ -122,7 +121,7 @@ export class Index {
    * @param  {string|number} docRef
    * @param  {boolean} emitEvent whether an event should be triggered
    */
-  removeDocByRef(docRef, emitEvent) {
+  removeDocByRef(docRef, emitEvent = true) {
     if (!docRef) return;
     if (this.documentStore.isDocStored() === false) {
       return;
@@ -130,7 +129,7 @@ export class Index {
 
     if (!this.documentStore.hasDoc(docRef)) return;
     var doc = this.documentStore.getDoc(docRef);
-    this.removeDoc(doc, false);
+    this.removeDoc(doc, emitEvent);
   }
 
   /**
@@ -138,10 +137,8 @@ export class Index {
    * @param  {object} doc
    * @param  {boolean} emitEvent whether an event should be triggered
    */
-  removeDoc(doc, emitEvent) {
+  removeDoc(doc, emitEvent = true) {
     if (!doc) return;
-
-    emitEvent = emitEvent === undefined ? true : emitEvent;
 
     var docRef = doc[this._ref];
     if (!this.documentStore.hasDoc(docRef)) return;
@@ -163,8 +160,7 @@ export class Index {
    * @param  {object} doc
    * @param  {boolean} emitEvent whether an event should be triggered
    */
-  updateDoc(doc, emitEvent) {
-    emitEvent = emitEvent === undefined ? true : emitEvent;
+  updateDoc(doc, emitEvent = true) {
 
     this.removeDocByRef(doc[this._ref], false);
     this.addDoc(doc, false);
