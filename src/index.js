@@ -254,7 +254,6 @@ export class Index {
 
   /**
    * Search a list of tokens within a field
-   * @private
    * @param  {string[]} queryTokens
    * @param  {string} fieldName
    * @param  {Configuration} config
@@ -335,7 +334,6 @@ export class Index {
    * Exact operation depends on the op parameter. If op is 'AND', then only the
    * intersection of the two score lists is retained. Otherwise, the union of
    * the two score lists is returned.
-   * @private
    * @param {boolean} accumScores should be null on first call
    * @param {object} scores new scores to merge into accumScores
    * @param {string} op merge operation (should be 'AND' or 'OR')
@@ -366,7 +364,6 @@ export class Index {
 
   /**
    * Record query tokens of retrieved documents
-   * @private
    * @param  {object} docTokens
    * @param  {string} token
    * @param  {object} docs
@@ -383,7 +380,6 @@ export class Index {
 
   /**
    * Calculate the inverse document frequency of a term within a field
-   * @private
    * @param  {string} term
    * @param  {string} field
    * @return {number}
@@ -401,7 +397,6 @@ export class Index {
 
   /**
    * Get the normalized coordination factor
-   * @private
    * @param  {object} scores
    * @param  {oobject} docTokens
    * @param  {number} n
