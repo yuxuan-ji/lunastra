@@ -24,91 +24,91 @@ export class DocumentStore {
   isDocStored() {return this._save;}
 
   /**
-   * Check whether a given document ref is stored
-   * @param  {string|number}  docRef
+   * Check whether a given document id is stored
+   * @param  {string|number}  id
    * @return {boolean}
    */
-  hasDoc(docRef) {
-    return docRef in this.docs;
+  hasDoc(id) {
+    return id in this.docs;
   }
 
   /**
-   * Get a document by its ref
-   * @param  {string|number} docRef
+   * Get a document by its id
+   * @param  {string|number} id
    * @return {object}
    */
-  getDoc(docRef) {
-    if (this.hasDoc(docRef) === false) return null;
-    return this.docs[docRef];
+  getDoc(id) {
+    if (this.hasDoc(id) === false) return null;
+    return this.docs[id];
   }
 
   /**
    * Store a document or update it if it already exists
-   * @param {string|number} docRef
+   * @param {string|number} id
    * @param {object} doc
    */
-  addDoc(docRef, doc) {
-    if (!this.hasDoc(docRef)) this.length++;
+  addDoc(id, doc) {
+    if (!this.hasDoc(id)) this.length++;
 
-    this.docs[docRef] = this._save ? (this.deepcpy ? clone(doc) : doc) : null;
+    this.docs[id] = this._save ? (this.deepcpy ? clone(doc) : doc) : null;
 
   }
 
   /**
-   * Remove a document from the store by its ref
-   * @param  {string|number} docRef
+   * Remove a document from the store by its id
+   * @param  {string|number} id
    */
-  removeDoc(docRef) {
-    if (!this.hasDoc(docRef)) return;
+  removeDoc(id) {
+    if (!this.hasDoc(id)) return;
 
-    delete this.docs[docRef];
-    delete this.docInfo[docRef];
+    delete this.docs[id];
+    delete this.docInfo[id];
     this.length--;
   }
 
   /**
-   * Get the field length of a document by its ref
+   * Get the field length of a document by its id
    *
-   * @param {number|string} docRef document id or reference
+   * @param {number|string} id
    * @param {string} fieldName field name
    * @return {number} field length
    */
-  getFieldLength(docRef, fieldName) {
-    if (docRef === null || docRef === undefined) return 0;
+  getFieldLength(id, fieldName) {
+    if (id === null || id === undefined) return 0;
 
-    if (!(docRef in this.docs)) return 0;
-    if (!(fieldName in this.docInfo[docRef])) return 0;
-    return this.docInfo[docRef][fieldName];
+    if (!(id in this.docs)) return 0;
+    if (!(fieldName in this.docInfo[id])) return 0;
+    return this.docInfo[id][fieldName];
   };
 
   /**
    * Add field length of a document's field tokens from pipeline results.
    * The field length of a document is used to do field length normalization
    * even without the original JSON document stored.
-   * @param {number|string} docRef document's id or reference
+   * @param {number|string} id
    * @param {string} fieldName field name
    * @param {number} length field length
    */
-  addFieldLength(docRef, fieldName, length) {
-    if (docRef === null || docRef === undefined) return;
-    if (!this.hasDoc(docRef)) return;
+  addFieldLength(id, fieldName, length) {
+    if (id === null || id === undefined) return;
+    if (!this.hasDoc(id)) return;
 
-    if (!this.docInfo[docRef]) this.docInfo[docRef] = {};
-    this.docInfo[docRef][fieldName] = length;
+    if (!this.docInfo[id]) this.docInfo[id] = {};
+    this.docInfo[id][fieldName] = length;
   }
 
   /**
    * Update field length of a document's field tokens from pipeline results.
    * The field length of a document is used to do field length normalization
    * even without the original JSON document stored.
-   * @param {number|string} docRef document's id or reference
+   * @param {number|string} id
    * @param {string} fieldName field name
    * @param {number} length field length
    */
-  updateFieldLength(docRef, fieldName, length) {
-    if (docRef === null || docRef === undefined) return;
-    if (!this.hasDoc(docRef)) return;
+  updateFieldLength(id, fieldName, length) {
+    if (id === null || id === undefined) return;
+    if (!this.hasDoc(id)) return;
 
-    this.addFieldLength(docRef, fieldName, length);
+    this.addFieldLength(id, fieldName, length);
   }
 }

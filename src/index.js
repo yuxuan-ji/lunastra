@@ -15,7 +15,7 @@ export class Index {
    */
   constructor() {
     this._fields = [];
-    this._ref = 'id';
+    this._id = 'id';
     this._idfCache = {};
 
     this.index = {};
@@ -51,8 +51,8 @@ export class Index {
    * Set the field used to uniquely identify a document (default is 'id')
    * @param {string} fieldName
    */
-  setRef(fieldName) {
-    this._ref = fieldName;
+  setId(fieldName) {
+    this._id = fieldName;
     return this;
   }
 
@@ -92,12 +92,12 @@ export class Index {
   addDoc(doc, emitEvent = true) {
     if (!doc) return;
 
-    var docRef = doc[this._ref];
+    var id = doc[this._id];
 
-    this.documentStore.addDoc(docRef, doc);
+    this.documentStore.addDoc(id, doc);
     this._fields.forEach(function (field) {
       var fieldTokens = this.pipeline.run(Tokenizer.tokenize(doc[field]));
-      this.documentStore.addFieldLength(docRef, field, fieldTokens.length);
+      this.documentStore.addFieldLength(id, field, fieldTokens.length);
 
       var tokenCount = {};
       fieldTokens.forEach(function (token) {
@@ -108,7 +108,7 @@ export class Index {
       for (var token in tokenCount) {
         var termFrequency = tokenCount[token];
         termFrequency = Math.sqrt(termFrequency);
-        this.index[field].addToken(token, { ref: docRef, tf: termFrequency });
+        this.index[field].addToken(token, { id: id, tf: termFrequency });
       }
 
     }, this);
@@ -118,17 +118,17 @@ export class Index {
 
   /**
    * Remove a document from the index by its unique id
-   * @param  {string|number} docRef
+   * @param  {string|number} id
    * @param  {boolean} emitEvent whether an event should be triggered
    */
-  removeDocByRef(docRef, emitEvent = true) {
-    if (!docRef) return;
+  removeDocById(id, emitEvent = true) {
+    if (!id) return;
     if (this.documentStore.isDocStored() === false) {
       return;
     }
 
-    if (!this.documentStore.hasDoc(docRef)) return;
-    var doc = this.documentStore.getDoc(docRef);
+    if (!this.documentStore.hasDoc(id)) return;
+    var doc = this.documentStore.getDoc(id);
     this.removeDoc(doc, emitEvent);
   }
 
@@ -140,15 +140,15 @@ export class Index {
   removeDoc(doc, emitEvent = true) {
     if (!doc) return;
 
-    var docRef = doc[this._ref];
-    if (!this.documentStore.hasDoc(docRef)) return;
+    var id = doc[this._id];
+    if (!this.documentStore.hasDoc(id)) return;
 
-    this.documentStore.removeDoc(docRef);
+    this.documentStore.removeDoc(id);
 
     this._fields.forEach(function (field) {
       var fieldTokens = this.pipeline.run(Tokenizer.tokenize(doc[field]));
       fieldTokens.forEach(function (token) {
-        this.index[field].removeToken(token, docRef);
+        this.index[field].removeToken(token, id);
       }, this);
     }, this);
 
@@ -162,7 +162,7 @@ export class Index {
    */
   updateDoc(doc, emitEvent = true) {
 
-    this.removeDocByRef(doc[this._ref], false);
+    this.removeDocById(doc[this._id], false);
     this.addDoc(doc, false);
 
     if (emitEvent) this.eventEmitter.emit('update', doc, this);
@@ -183,7 +183,7 @@ export class Index {
    * 'hello' and 'help' if those terms were already included in the index.
    *
    * Matching documents are returned as an array of objects, each object contains
-   * the matching document ref, as set for this index, and the similarity score
+   * the matching document id, as set for this index, and the similarity score
    * for this document against the query.
    *
    * @param {string} query The query to search the index with.
@@ -225,25 +225,25 @@ export class Index {
       var fieldSearchResults = this.fieldSearch(tokens, field, config);
       var fieldBoost = config[field].boost;
 
-      for (let docRef in fieldSearchResults) {
-        fieldSearchResults[docRef] = fieldSearchResults[docRef] * fieldBoost;
+      for (let id in fieldSearchResults) {
+        fieldSearchResults[id] = fieldSearchResults[id] * fieldBoost;
       }
 
-      for (let docRef in fieldSearchResults) {
-        if (docRef in queryResults) {
-          queryResults[docRef] += fieldSearchResults[docRef];
+      for (let id in fieldSearchResults) {
+        if (id in queryResults) {
+          queryResults[id] += fieldSearchResults[id];
         } else {
-          queryResults[docRef] = fieldSearchResults[docRef];
+          queryResults[id] = fieldSearchResults[id];
         }
       }
     }
 
     var results = [];
     var result;
-    for (var docRef in queryResults) {
-      result = {ref: docRef, score: queryResults[docRef]};
-      if (this.documentStore.hasDoc(docRef)) {
-        result.doc = this.documentStore.getDoc(docRef);
+    for (var id in queryResults) {
+      result = {id: id, score: queryResults[id]};
+      if (this.documentStore.hasDoc(id)) {
+        result.doc = this.documentStore.getDoc(id);
       }
       results.push(result);
     }
@@ -287,9 +287,9 @@ export class Index {
           // already been filtered out because they weren't scored
           // by previous query token passes.
           var filteredDocs = {};
-          for (let docRef in scores) {
-            if (docRef in docs) {
-              filteredDocs[docRef] = docs[docRef];
+          for (let id in scores) {
+            if (id in docs) {
+              filteredDocs[id] = docs[id];
             }
           }
           docs = filteredDocs;
@@ -299,9 +299,9 @@ export class Index {
           this.fieldSearchStats(docTokens, key, docs);
         }
 
-        for (var docRef in docs) {
-          var tf = this.index[fieldName].getTermFrequency(key, docRef);
-          var fieldLength = this.documentStore.getFieldLength(docRef, fieldName);
+        for (var id in docs) {
+          var tf = this.index[fieldName].getTermFrequency(key, id);
+          var fieldLength = this.documentStore.getFieldLength(id, fieldName);
           var fieldLengthNorm = 1;
           if (fieldLength !== 0) {
             fieldLengthNorm = 1 / Math.sqrt(fieldLength);
@@ -314,10 +314,10 @@ export class Index {
 
           var score = tf * idf * fieldLengthNorm * penality;
 
-          if (docRef in queryTokenScores) {
-            queryTokenScores[docRef] += score;
+          if (id in queryTokenScores) {
+            queryTokenScores[id] += score;
           } else {
-            queryTokenScores[docRef] = score;
+            queryTokenScores[id] = score;
           }
         }
       }, this);
@@ -344,19 +344,19 @@ export class Index {
     }
     if (op === 'AND') {
       var intersection = {};
-      for (let docRef in scores) {
-        if (docRef in accumScores) {
-          intersection[docRef] = accumScores[docRef] + scores[docRef];
+      for (let id in scores) {
+        if (id in accumScores) {
+          intersection[id] = accumScores[id] + scores[id];
         }
       }
       return intersection;
     }
 
-    for (var docRef in scores) {
-      if (docRef in accumScores) {
-        accumScores[docRef] += scores[docRef];
+    for (var id in scores) {
+      if (id in accumScores) {
+        accumScores[id] += scores[id];
       } else {
-        accumScores[docRef] = scores[docRef];
+        accumScores[id] = scores[id];
       }
     }
     return accumScores;

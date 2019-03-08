@@ -14,15 +14,15 @@ export class InvertedIndex {
      * Adds a {token: tokenInfo} pair to the inverted index.
      * If the token already exist, then update the tokenInfo.
      *
-     * tokenInfo format: { ref: 1, tf: 2}
-     * tokenInfo should contains the document's ref and the tf(token frequency) of that token in
+     * tokenInfo format: { id: 1, tf: 2}
+     * tokenInfo should contains the document's id and the tf(token frequency) of that token in
      * the document.
      *
      * By default this function starts at the root of the current inverted index, however
      * it can start at any node of the inverted index if required.
      *
      * @param {string} token
-     * @param {object} tokenInfo format: { ref: 1, tf: 2}
+     * @param {object} tokenInfo format: { id: 1, tf: 2}
      * @param {object} root An optional node at which to start looking for the
      * correct place to enter the doc, by default the root of this InvertedIndex
      * is used.
@@ -37,14 +37,14 @@ export class InvertedIndex {
       root = root[key];
     }
 
-    var docRef = tokenInfo.ref;
-    if (!root.docs[docRef]) {
+    var id = tokenInfo.id;
+    if (!root.docs[id]) {
       // if this doc not exist, then add this doc
-      root.docs[docRef] = {tf: tokenInfo.tf};
+      root.docs[id] = {tf: tokenInfo.tf};
       root.df += 1;
     } else {
       // if this doc already exist, then update tokenInfo
-      root.docs[docRef] = {tf: tokenInfo.tf};
+      root.docs[id] = {tf: tokenInfo.tf};
     }
   }
 
@@ -104,21 +104,21 @@ export class InvertedIndex {
    * Get term frequency of given token in given document unique id.
    * If token or document id not found, return 0.
    * @param {string} token the token to get the documents for
-   * @param {string|number} docRef the unique id of the document
+   * @param {string|number} id the unique id of the document
    * @return {number}
    */
-  getTermFrequency(token, docRef) {
+  getTermFrequency(token, id) {
     var node = this.getNode(token);
 
     if (node == null) {
       return 0;
     }
 
-    if (!(docRef in node.docs)) {
+    if (!(id in node.docs)) {
       return 0;
     }
 
-    return node.docs[docRef].tf;
+    return node.docs[id].tf;
   }
 
   /**
@@ -138,18 +138,18 @@ export class InvertedIndex {
   }
 
   /**
-   * Remove the document identified by document's ref from the token in the inverted index.
+   * Remove the document identified by document's id from the token in the inverted index.
    * @param {string} token remove the document from token
-   * @param {string} ref the ref of the document to remove from given token
+   * @param {string} id the id of the document to remove from given token
    */
-  removeToken(token, ref) {
+  removeToken(token, id) {
     if (!token) return;
     var node = this.getNode(token);
 
     if (node == null) return;
 
-    if (ref in node.docs) {
-      delete node.docs[ref];
+    if (id in node.docs) {
+      delete node.docs[id];
       node.df -= 1;
     }
   }
