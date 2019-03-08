@@ -80,31 +80,33 @@ export class Pipeline {
   }
 
   /**
-   * Run each function stored in the pipeline on the input tokens
-   * in FIFO order and returns the result
-   * @param  {string[]} tokens
-   * @return {string[]}
+   * Run each function stored in the pipeline on some input
+   * in FIFO order and returns the result in a list
+   * @param  {any|any[]} input
+   * @return {any[]}
    */
-  run(tokens) {
-    var out = tokens;
-    var queueLength = this._queue.length;
-    for (var i = 0; i < queueLength; i++) {
-      var pipelineOutput = [];
-      for (let j = 0; j < out.length; j++) {
-        var output = this._queue[i].run(out[j], j, out);
-        if (!Array.isArray(output)) output = [output];
-        for (var k = 0; k < output.length; k++) {
-          if (output[k] !== null && output[k] !== void 0) {
-            pipelineOutput.push(output[k]);
-          }
-        }
-      }
-      for (var j = pipelineOutput.length - 1; j >= 0; j--) {
-        if (pipelineOutput[j] === "") pipelineOutput.splice(j, 1);
-      }
-      out = pipelineOutput;
-    }
+  run(input) {
+    if (!Array.isArray(input)) input = [input];
+    var output = input;
 
-    return out;
+    // Apply each pipeline extension on each element of the input
+    // and aggregate the result
+    this._queue.forEach(function (ext) {
+      var pipelineOutput = [];
+
+      output.forEach(function (item) {
+        var extensionOutput = ext.run(item);
+        if (!Array.isArray(extensionOutput)) extensionOutput = [extensionOutput];
+
+        extensionOutput.forEach(function (el) {
+          if (el !== null && el !== undefined && el !== "") pipelineOutput.push(el);
+        });
+
+      });
+      output = pipelineOutput;
+
+    });
+
+    return output;
   }
 }
