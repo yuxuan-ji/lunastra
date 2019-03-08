@@ -8,7 +8,15 @@
     </head>
     <body>
         <script src="../lib/lunastra.js"></script>
-
+        <script>
+            var lunastra = Lunastra.init(function(){
+                this.addField('body');
+            });
+            lunastra.addDoc({
+                id:12,
+                body: "hello world"
+            });
+        </script>
         <div id="1" class="a-div">
             <b> lunastra playground </b>
             <div class="another-div">
