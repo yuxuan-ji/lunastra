@@ -4,6 +4,11 @@
 <dt><a href="#Configuration">Configuration</a></dt>
 <dd><p>A wrapper on a user search configuration.</p>
 </dd>
+<dt><a href="#DocumentProcessingManager">DocumentProcessingManager</a></dt>
+<dd><p>The Document Processing Manager is a large pipeline
+any document goes through before being stored in
+the Document Store</p>
+</dd>
 <dt><a href="#DocumentStore">DocumentStore</a></dt>
 <dd><p>A key-value document store used for storing sets of tokens for
 documents stored in the index.</p>
@@ -14,6 +19,10 @@ documents stored in the index.</p>
 <dt><a href="#Pipeline">Pipeline</a></dt>
 <dd><p>An ordered list of functions applied to both document
 tokens and query tokens.</p>
+</dd>
+<dt><a href="#QueryParser">QueryParser</a></dt>
+<dd><p>Utility class to convert a user query into a model understandable
+by the Lunastra Index</p>
 </dd>
 <dt><a href="#Tokenizer">Tokenizer</a></dt>
 <dd><p>A wrapper around how Lunastra tokenizes strings</p>
@@ -68,6 +77,17 @@ Add a fields to user search configuration
 | bool | <code>string</code> | Boolean model |
 | expand | <code>string</code> | Expand model |
 | fields | <code>Array.&lt;string&gt;</code> | fields of the index instance |
+
+<a name="DocumentProcessingManager"></a>
+
+## DocumentProcessingManager
+The Document Processing Manager is a large pipelineany document goes through before being stored inthe Document Store
+
+**Kind**: global class  
+<a name="new_DocumentProcessingManager_new"></a>
+
+### new exports.DocumentProcessingManager()
+Initialize a DPM
 
 <a name="DocumentStore"></a>
 
@@ -312,7 +332,7 @@ An ordered list of functions applied to both documenttokens and query tokens.
     * [.remove(f)](#Pipeline+remove)
     * [.pop()](#Pipeline+pop) ⇒ <code>function</code>
     * [.clear()](#Pipeline+clear)
-    * [.run(tokens)](#Pipeline+run) ⇒ <code>Array.&lt;string&gt;</code>
+    * [.run(input)](#Pipeline+run) ⇒ <code>Array.&lt;any&gt;</code>
 
 <a name="new_Pipeline_new"></a>
 
@@ -385,14 +405,32 @@ Empty the pipeline
 **Kind**: instance method of [<code>Pipeline</code>](#Pipeline)  
 <a name="Pipeline+run"></a>
 
-### pipeline.run(tokens) ⇒ <code>Array.&lt;string&gt;</code>
-Run each function stored in the pipeline on the input tokensin FIFO order and returns the result
+### pipeline.run(input) ⇒ <code>Array.&lt;any&gt;</code>
+Run each function stored in the pipeline on some inputin FIFO order and returns the result in a list
 
 **Kind**: instance method of [<code>Pipeline</code>](#Pipeline)  
 
 | Param | Type |
 | --- | --- |
-| tokens | <code>Array.&lt;string&gt;</code> | 
+| input | <code>any</code> \| <code>Array.&lt;any&gt;</code> | 
+
+<a name="QueryParser"></a>
+
+## QueryParser
+Utility class to convert a user query into a model understandableby the Lunastra Index
+
+**Kind**: global class  
+<a name="QueryParser.build"></a>
+
+### QueryParser.build(query) ⇒ <code>object</code>
+Build the query into a model understandable by the Lunastra Index
+
+**Kind**: static method of [<code>QueryParser</code>](#QueryParser)  
+**Returns**: <code>object</code> - model  
+
+| Param | Type |
+| --- | --- |
+| query | <code>string</code> | 
 
 <a name="Tokenizer"></a>
 

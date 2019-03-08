@@ -68,9 +68,9 @@ Please make sure to update tests as appropriate.
 
 ## Documentation
 
-Documentation is generated with JsDoc and jsdoc2md and located in _docs/_. Run:
+Documentation is generated with JsDoc and jsdoc2md and located in their respective locations in _src/_. Run:
 ```sh
-bash docs/docs.sh
+bash docs.sh
 ```
 to generate the documentation automatically from your JsDoc comments.
 
