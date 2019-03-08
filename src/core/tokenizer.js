@@ -13,13 +13,7 @@ export class Tokenizer {
   static tokenize(str) {
     if (!arguments.length || str === null || str === undefined) return [];
     if (Array.isArray(str)) {
-      var arr = str.filter(function (token) {
-        if (token === null || token === undefined) {
-          return false;
-        }
-
-        return true;
-      });
+      var arr = str.filter(function (token) {return token !== null && token !== undefined;});
 
       arr = arr.map(function (t) {
         return toString(t).toLowerCase();
