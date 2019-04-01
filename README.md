@@ -70,7 +70,7 @@ Please make sure to update tests as appropriate.
 
 Documentation is generated with JsDoc and jsdoc2md and located in their respective locations in _src/_. Run:
 ```sh
-bash docs.sh
+npm run build:docs
 ```
 to generate the documentation automatically from your JsDoc comments.
 

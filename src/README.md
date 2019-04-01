@@ -25,12 +25,12 @@ A dataset maintained by Lunastra and exposing its public facing API.
     * [new exports.Index()](#new_Index_new)
     * [.getFields()](#Index+getFields) ⇒ <code>Array.&lt;string&gt;</code>
     * [.addField(fieldName)](#Index+addField)
-    * [.setRef(fieldName)](#Index+setRef)
+    * [.setId(fieldName)](#Index+setId)
     * [.on(...events, f)](#Index+on)
     * [.off(event, f)](#Index+off)
     * [.saveDocument(save)](#Index+saveDocument) ⇒ <code>this</code>
     * [.addDoc(doc, emitEvent)](#Index+addDoc)
-    * [.removeDocByRef(docRef, emitEvent)](#Index+removeDocByRef)
+    * [.removeDocById(id, emitEvent)](#Index+removeDocById)
     * [.removeDoc(doc, emitEvent)](#Index+removeDoc)
     * [.updateDoc(doc, emitEvent)](#Index+updateDoc)
     * [.search(query, userConfig)](#Index+search) ⇒ <code>object</code>
@@ -62,9 +62,9 @@ Register a field in the index
 | --- | --- |
 | fieldName | <code>string</code> | 
 
-<a name="Index+setRef"></a>
+<a name="Index+setId"></a>
 
-### index.setRef(fieldName)
+### index.setId(fieldName)
 Set the field used to uniquely identify a document (default is 'id')
 
 **Kind**: instance method of [<code>Index</code>](#Index)  
@@ -120,16 +120,16 @@ Adds a document to the index
 | doc | <code>object</code> |  |  |
 | emitEvent | <code>boolean</code> | <code>true</code> | whether an event should be triggered |
 
-<a name="Index+removeDocByRef"></a>
+<a name="Index+removeDocById"></a>
 
-### index.removeDocByRef(docRef, emitEvent)
+### index.removeDocById(id, emitEvent)
 Remove a document from the index by its unique id
 
 **Kind**: instance method of [<code>Index</code>](#Index)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| docRef | <code>string</code> \| <code>number</code> |  |  |
+| id | <code>string</code> \| <code>number</code> |  |  |
 | emitEvent | <code>boolean</code> | <code>true</code> | whether an event should be triggered |
 
 <a name="Index+removeDoc"></a>
@@ -159,7 +159,7 @@ Update a document in the index
 <a name="Index+search"></a>
 
 ### index.search(query, userConfig) ⇒ <code>object</code>
-Searches the index using the passed query.Queries should be a string, multiple words are allowed.If config is null, will search all fields defaultly, and lead to OR based query.If config is specified, will search specified with query time boosting.All query tokens are passed through the same pipeline that document tokensare passed through, so any language processing involved will be run on everyquery term.Each query term is expanded, so that the term 'he' might be expanded to'hello' and 'help' if those terms were already included in the index.Matching documents are returned as an array of objects, each object containsthe matching document ref, as set for this index, and the similarity scorefor this document against the query.
+Searches the index using the passed query.Queries should be a string, multiple words are allowed.If config is null, will search all fields defaultly, and lead to OR based query.If config is specified, will search specified with query time boosting.All query tokens are passed through the same pipeline that document tokensare passed through, so any language processing involved will be run on everyquery term.Each query term is expanded, so that the term 'he' might be expanded to'hello' and 'help' if those terms were already included in the index.Matching documents are returned as an array of objects, each object containsthe matching document id, as set for this index, and the similarity scorefor this document against the query.
 
 **Kind**: instance method of [<code>Index</code>](#Index)  
 

@@ -5,6 +5,12 @@
   "main": "lib/lunastra.js",
   "scripts": {
     "build": "webpack --env dev && webpack --env build",
+    "build:docs": "npm run build:docs:src && npm run build:docs:core && npm run build:docs:events && npm run build:docs:exts && npm run build:docs:utils",
+    "build:docs:src": "jsdoc2md --files src/*.js > src/README.md",
+    "build:docs:core": "jsdoc2md --files src/core/*.js > src/core/README.md",
+    "build:docs:events": "jsdoc2md --files src/events/*.js > src/events/README.md",
+    "build:docs:exts": "jsdoc2md --files src/exts/*.js > src/exts/README.md",
+    "build:docs:utils": "jsdoc2md --files src/utils/*.js > src/utils/README.md",
     "dev": "webpack --progress --colors --watch --env dev",
     "test": "mocha --require babel-register --colors ./test/*.spec.js",
     "test:watch": "mocha --require babel-register --colors -w ./test/*.spec.js",

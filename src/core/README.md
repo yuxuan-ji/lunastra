@@ -98,13 +98,13 @@ A key-value document store used for storing sets of tokens fordocuments stored 
 
 * [DocumentStore](#DocumentStore)
     * [new exports.DocumentStore(save, deepcpy)](#new_DocumentStore_new)
-    * [.hasDoc(docRef)](#DocumentStore+hasDoc) ⇒ <code>boolean</code>
-    * [.getDoc(docRef)](#DocumentStore+getDoc) ⇒ <code>object</code>
-    * [.addDoc(docRef, doc)](#DocumentStore+addDoc)
-    * [.removeDoc(docRef)](#DocumentStore+removeDoc)
-    * [.getFieldLength(docRef, fieldName)](#DocumentStore+getFieldLength) ⇒ <code>number</code>
-    * [.addFieldLength(docRef, fieldName, length)](#DocumentStore+addFieldLength)
-    * [.updateFieldLength(docRef, fieldName, length)](#DocumentStore+updateFieldLength)
+    * [.hasDoc(id)](#DocumentStore+hasDoc) ⇒ <code>boolean</code>
+    * [.getDoc(id)](#DocumentStore+getDoc) ⇒ <code>object</code>
+    * [.addDoc(id, doc)](#DocumentStore+addDoc)
+    * [.removeDoc(id)](#DocumentStore+removeDoc)
+    * [.getFieldLength(id, fieldName)](#DocumentStore+getFieldLength) ⇒ <code>number</code>
+    * [.addFieldLength(id, fieldName, length)](#DocumentStore+addFieldLength)
+    * [.updateFieldLength(id, fieldName, length)](#DocumentStore+updateFieldLength)
 
 <a name="new_DocumentStore_new"></a>
 
@@ -119,85 +119,85 @@ Initialize a document store
 
 <a name="DocumentStore+hasDoc"></a>
 
-### documentStore.hasDoc(docRef) ⇒ <code>boolean</code>
-Check whether a given document ref is stored
+### documentStore.hasDoc(id) ⇒ <code>boolean</code>
+Check whether a given document id is stored
 
 **Kind**: instance method of [<code>DocumentStore</code>](#DocumentStore)  
 
 | Param | Type |
 | --- | --- |
-| docRef | <code>string</code> \| <code>number</code> | 
+| id | <code>string</code> \| <code>number</code> | 
 
 <a name="DocumentStore+getDoc"></a>
 
-### documentStore.getDoc(docRef) ⇒ <code>object</code>
-Get a document by its ref
+### documentStore.getDoc(id) ⇒ <code>object</code>
+Get a document by its id
 
 **Kind**: instance method of [<code>DocumentStore</code>](#DocumentStore)  
 
 | Param | Type |
 | --- | --- |
-| docRef | <code>string</code> \| <code>number</code> | 
+| id | <code>string</code> \| <code>number</code> | 
 
 <a name="DocumentStore+addDoc"></a>
 
-### documentStore.addDoc(docRef, doc)
+### documentStore.addDoc(id, doc)
 Store a document or update it if it already exists
 
 **Kind**: instance method of [<code>DocumentStore</code>](#DocumentStore)  
 
 | Param | Type |
 | --- | --- |
-| docRef | <code>string</code> \| <code>number</code> | 
+| id | <code>string</code> \| <code>number</code> | 
 | doc | <code>object</code> | 
 
 <a name="DocumentStore+removeDoc"></a>
 
-### documentStore.removeDoc(docRef)
-Remove a document from the store by its ref
+### documentStore.removeDoc(id)
+Remove a document from the store by its id
 
 **Kind**: instance method of [<code>DocumentStore</code>](#DocumentStore)  
 
 | Param | Type |
 | --- | --- |
-| docRef | <code>string</code> \| <code>number</code> | 
+| id | <code>string</code> \| <code>number</code> | 
 
 <a name="DocumentStore+getFieldLength"></a>
 
-### documentStore.getFieldLength(docRef, fieldName) ⇒ <code>number</code>
-Get the field length of a document by its ref
+### documentStore.getFieldLength(id, fieldName) ⇒ <code>number</code>
+Get the field length of a document by its id
 
 **Kind**: instance method of [<code>DocumentStore</code>](#DocumentStore)  
 **Returns**: <code>number</code> - field length  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| docRef | <code>number</code> \| <code>string</code> | document id or reference |
+| id | <code>number</code> \| <code>string</code> |  |
 | fieldName | <code>string</code> | field name |
 
 <a name="DocumentStore+addFieldLength"></a>
 
-### documentStore.addFieldLength(docRef, fieldName, length)
+### documentStore.addFieldLength(id, fieldName, length)
 Add field length of a document's field tokens from pipeline results.The field length of a document is used to do field length normalizationeven without the original JSON document stored.
 
 **Kind**: instance method of [<code>DocumentStore</code>](#DocumentStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| docRef | <code>number</code> \| <code>string</code> | document's id or reference |
+| id | <code>number</code> \| <code>string</code> |  |
 | fieldName | <code>string</code> | field name |
 | length | <code>number</code> | field length |
 
 <a name="DocumentStore+updateFieldLength"></a>
 
-### documentStore.updateFieldLength(docRef, fieldName, length)
+### documentStore.updateFieldLength(id, fieldName, length)
 Update field length of a document's field tokens from pipeline results.The field length of a document is used to do field length normalizationeven without the original JSON document stored.
 
 **Kind**: instance method of [<code>DocumentStore</code>](#DocumentStore)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| docRef | <code>number</code> \| <code>string</code> | document's id or reference |
+| id | <code>number</code> \| <code>string</code> |  |
 | fieldName | <code>string</code> | field name |
 | length | <code>number</code> | field length |
 
@@ -214,9 +214,9 @@ The entity on which queries are executed upon.
     * [.hasToken(token)](#InvertedIndex+hasToken) ⇒ <code>boolean</code>
     * [.getNode(token)](#InvertedIndex+getNode) ⇒ <code>object</code>
     * [.getDocs(token)](#InvertedIndex+getDocs) ⇒ <code>object</code>
-    * [.getTermFrequency(token, docRef)](#InvertedIndex+getTermFrequency) ⇒ <code>number</code>
+    * [.getTermFrequency(token, id)](#InvertedIndex+getTermFrequency) ⇒ <code>number</code>
     * [.getDocFreq(token)](#InvertedIndex+getDocFreq) ⇒ <code>object</code>
-    * [.removeToken(token, ref)](#InvertedIndex+removeToken)
+    * [.removeToken(token, id)](#InvertedIndex+removeToken)
     * [.expandToken(token)](#InvertedIndex+expandToken) ⇒ <code>Array.&lt;string&gt;</code>
 
 <a name="new_InvertedIndex_new"></a>
@@ -227,14 +227,14 @@ Initialize an inverted index
 <a name="InvertedIndex+addToken"></a>
 
 ### invertedIndex.addToken(token, tokenInfo, root)
-Adds a {token: tokenInfo} pair to the inverted index.If the token already exist, then update the tokenInfo.tokenInfo format: { ref: 1, tf: 2}tokenInfo should contains the document's ref and the tf(token frequency) of that token inthe document.By default this function starts at the root of the current inverted index, howeverit can start at any node of the inverted index if required.
+Adds a {token: tokenInfo} pair to the inverted index.If the token already exist, then update the tokenInfo.tokenInfo format: { id: 1, tf: 2}tokenInfo should contains the document's id and the tf(token frequency) of that token inthe document.By default this function starts at the root of the current inverted index, howeverit can start at any node of the inverted index if required.
 
 **Kind**: instance method of [<code>InvertedIndex</code>](#InvertedIndex)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | token | <code>string</code> |  |
-| tokenInfo | <code>object</code> | format: { ref: 1, tf: 2} |
+| tokenInfo | <code>object</code> | format: { id: 1, tf: 2} |
 | root | <code>object</code> | An optional node at which to start looking for the correct place to enter the doc, by default the root of this InvertedIndex is used. |
 
 <a name="InvertedIndex+hasToken"></a>
@@ -272,7 +272,7 @@ Get the documents of a given token.If token not found, return {}.
 
 <a name="InvertedIndex+getTermFrequency"></a>
 
-### invertedIndex.getTermFrequency(token, docRef) ⇒ <code>number</code>
+### invertedIndex.getTermFrequency(token, id) ⇒ <code>number</code>
 Get term frequency of given token in given document unique id.If token or document id not found, return 0.
 
 **Kind**: instance method of [<code>InvertedIndex</code>](#InvertedIndex)  
@@ -280,7 +280,7 @@ Get term frequency of given token in given document unique id.If token or docum
 | Param | Type | Description |
 | --- | --- | --- |
 | token | <code>string</code> | the token to get the documents for |
-| docRef | <code>string</code> \| <code>number</code> | the unique id of the document |
+| id | <code>string</code> \| <code>number</code> | the unique id of the document |
 
 <a name="InvertedIndex+getDocFreq"></a>
 
@@ -295,15 +295,15 @@ Get the document frequency of given token.If token not found, return 0.
 
 <a name="InvertedIndex+removeToken"></a>
 
-### invertedIndex.removeToken(token, ref)
-Remove the document identified by document's ref from the token in the inverted index.
+### invertedIndex.removeToken(token, id)
+Remove the document identified by document's id from the token in the inverted index.
 
 **Kind**: instance method of [<code>InvertedIndex</code>](#InvertedIndex)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | token | <code>string</code> | remove the document from token |
-| ref | <code>string</code> | the ref of the document to remove from given token |
+| id | <code>string</code> | the id of the document to remove from given token |
 
 <a name="InvertedIndex+expandToken"></a>
 
