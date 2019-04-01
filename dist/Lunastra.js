@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define("Lunastra", [], factory);
+		define("lunastra", [], factory);
 	else if(typeof exports === 'object')
-		exports["Lunastra"] = factory();
+		exports["lunastra"] = factory();
 	else
-		root["Lunastra"] = factory();
+		root["lunastra"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -368,7 +368,7 @@ function () {
     /**
      * Get the field length of a document by its id
      *
-     * @param {number|string} id document id
+     * @param {number|string} id
      * @param {string} fieldName field name
      * @return {number} field length
      */
@@ -388,7 +388,7 @@ function () {
      * Add field length of a document's field tokens from pipeline results.
      * The field length of a document is used to do field length normalization
      * even without the original JSON document stored.
-     * @param {number|string} id document's id
+     * @param {number|string} id
      * @param {string} fieldName field name
      * @param {number} length field length
      */
@@ -402,7 +402,7 @@ function () {
      * Update field length of a document's field tokens from pipeline results.
      * The field length of a document is used to do field length normalization
      * even without the original JSON document stored.
-     * @param {number|string} id document's id
+     * @param {number|string} id
      * @param {string} fieldName field name
      * @param {number} length field length
      */
@@ -2328,4 +2328,4 @@ function clone(obj) {
 
 /******/ });
 });
-//# sourceMappingURL=Lunastra.js.map
+//# sourceMappingURL=lunastra.js.map
