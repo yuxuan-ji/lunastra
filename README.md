@@ -3,6 +3,8 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d0b878e7ade34055a63c265663797537)](https://www.codacy.com/app/yuxuan98/lunastra?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yuxuan-ji/lunastra&amp;utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/github/yuxuan-ji/lunastra/badge.svg?targetFile=package.json)](https://snyk.io/test/github/yuxuan-ji/lunastra?targetFile=package.json)
+[![MIT Licence](https://img.shields.io/apm/l/vim-mode.svg?color=blue)](https://github.com/yuxuan-ji/lunastra/blob/master/LICENSE)
+[![Size](https://img.shields.io/github/size/yuxuan-ji/lunastra/dist/lunastra.min.js.svg?color=green)](https://github.com/yuxuan-ji/lunastra/blob/master/dist/lunastra.min.js)
 
 Lunastra is a full-text search engine with focus on customization. 
 
@@ -75,4 +77,4 @@ npm run build:docs
 to generate the documentation automatically from your JsDoc comments.
 
 <!-- Markdown link & img dfn's -->
-[wiki]: https://github.com/yuxuan-ji/domql/wiki
+[wiki]: https://github.com/yuxuan-ji/lunastra/wiki
