@@ -1,4 +1,4 @@
-![Logo](https://github.com/yuxuan-ji/lunastra/blob/master/logo.jpg)
+![Logo](https://github.com/yuxuan-ji/lunastra/blob/master/logo.png)
 ======
 
 
