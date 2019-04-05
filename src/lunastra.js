@@ -5,7 +5,7 @@ import {Stemmer} from './exts/stemmer.js';
 
 /**
  * A helper method to initialize a Lunastra Index
- * @param  {object} config
+ * @param  {Object} config
  * @return {Index}
  */
 export function init(config) {

@@ -31,7 +31,7 @@ export class Index {
 
   /**
    * Return the fields registered in the index
-   * @return {string[]}
+   * @return {String[]}
    */
   getFields() {
     return this._fields.slice();
@@ -39,7 +39,7 @@ export class Index {
 
   /**
    * Register a field in the index
-   * @param {string} fieldName
+   * @param {String} fieldName
    */
   addField(fieldName) {
     this._fields.push(fieldName);
@@ -49,7 +49,7 @@ export class Index {
 
   /**
    * Set the field used to uniquely identify a document (default is 'id')
-   * @param {string} fieldName
+   * @param {String} fieldName
    */
   setId(fieldName) {
     this._id = fieldName;
@@ -58,7 +58,7 @@ export class Index {
 
   /**
    * Bind a handler to the specified events
-   * @param  {...string} events
+   * @param  {...String} events
    * @param {function} f
    */
   on(...args) {
@@ -67,7 +67,7 @@ export class Index {
 
   /**
    * Unbind a handler from an event
-   * @param  {string} event
+   * @param  {String} event
    * @param  {function} f
    */
   off(event, fn) {
@@ -76,7 +76,7 @@ export class Index {
 
   /**
    * Sets whether origin JSON documents are stored
-   * @param  {boolean} save default true
+   * @param  {Boolean} save default true
    * @return {this}
    */
   saveDocument(save) {
@@ -86,8 +86,8 @@ export class Index {
 
   /**
    * Adds a document to the index
-   * @param {object} doc
-   * @param {boolean} emitEvent whether an event should be triggered
+   * @param {Object} doc
+   * @param {Boolean} emitEvent whether an event should be triggered
    */
   addDoc(doc, emitEvent = true) {
     if (!doc) return;
@@ -118,8 +118,8 @@ export class Index {
 
   /**
    * Remove a document from the index by its unique id
-   * @param  {string|number} id
-   * @param  {boolean} emitEvent whether an event should be triggered
+   * @param  {String|Number} id
+   * @param  {Boolean} emitEvent whether an event should be triggered
    */
   removeDocById(id, emitEvent = true) {
     if (!id) return;
@@ -134,8 +134,8 @@ export class Index {
 
   /**
    * Remove a document from the index
-   * @param  {object} doc
-   * @param  {boolean} emitEvent whether an event should be triggered
+   * @param  {Object} doc
+   * @param  {Boolean} emitEvent whether an event should be triggered
    */
   removeDoc(doc, emitEvent = true) {
     if (!doc) return;
@@ -157,8 +157,8 @@ export class Index {
 
   /**
    * Update a document in the index
-   * @param  {object} doc
-   * @param  {boolean} emitEvent whether an event should be triggered
+   * @param  {Object} doc
+   * @param  {Boolean} emitEvent whether an event should be triggered
    */
   updateDoc(doc, emitEvent = true) {
 
@@ -170,7 +170,7 @@ export class Index {
 
   /**
    * Searches the index using the passed query.
-   * Queries should be a string, multiple words are allowed.
+   * Queries should be a String, multiple words are allowed.
    *
    * If config is null, will search all fields defaultly, and lead to OR based query.
    * If config is specified, will search specified with query time boosting.
@@ -182,13 +182,13 @@ export class Index {
    * Each query term is expanded, so that the term 'he' might be expanded to
    * 'hello' and 'help' if those terms were already included in the index.
    *
-   * Matching documents are returned as an array of objects, each object contains
+   * Matching documents are returned as an array of objects, each Object contains
    * the matching document id, as set for this index, and the similarity score
    * for this document against the query.
    *
-   * @param {string} query The query to search the index with.
+   * @param {String} query The query to search the index with.
    * @param {JSON} userConfig The user query config, JSON format.
-   * @return {object}
+   * @return {Object}
    */
   search(query, userConfig) {
     if (!query) return [];
@@ -254,10 +254,10 @@ export class Index {
 
   /**
    * Search a list of tokens within a field
-   * @param  {string[]} queryTokens
-   * @param  {string} fieldName
+   * @param  {String[]} queryTokens
+   * @param  {String} fieldName
    * @param  {Configuration} config
-   * @return {object}
+   * @return {Object}
    */
   fieldSearch(queryTokens, fieldName, config) {
     var booleanType = config[fieldName].bool;
@@ -334,9 +334,9 @@ export class Index {
    * Exact operation depends on the op parameter. If op is 'AND', then only the
    * intersection of the two score lists is retained. Otherwise, the union of
    * the two score lists is returned.
-   * @param {boolean} accumScores should be null on first call
-   * @param {object} scores new scores to merge into accumScores
-   * @param {string} op merge operation (should be 'AND' or 'OR')
+   * @param {Boolean} accumScores should be null on first call
+   * @param {Object} scores new scores to merge into accumScores
+   * @param {String} op merge operation (should be 'AND' or 'OR')
    */
   mergeScores(accumScores, scores, op) {
     if (!accumScores) {
@@ -364,9 +364,9 @@ export class Index {
 
   /**
    * Record query tokens of retrieved documents
-   * @param  {object} docTokens
-   * @param  {string} token
-   * @param  {object} docs
+   * @param  {Object} docTokens
+   * @param  {String} token
+   * @param  {Object} docs
    */
   fieldSearchStats(docTokens, token, docs) {
     for (var doc in docs) {
@@ -380,9 +380,9 @@ export class Index {
 
   /**
    * Calculate the inverse document frequency of a term within a field
-   * @param  {string} term
-   * @param  {string} field
-   * @return {number}
+   * @param  {String} term
+   * @param  {String} field
+   * @return {Number}
    */
   idf(term, field) {
     var cacheKey = "@" + field + '/' + term;
@@ -397,10 +397,10 @@ export class Index {
 
   /**
    * Get the normalized coordination factor
-   * @param  {object} scores
-   * @param  {oobject} docTokens
-   * @param  {number} n
-   * @return {object}
+   * @param  {Object} scores
+   * @param  {Object} docTokens
+   * @param  {Number} n
+   * @return {Object}
    */
   coordNorm(scores, docTokens, n) {
     for (var doc in scores) {
