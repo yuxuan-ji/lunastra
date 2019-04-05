@@ -13,7 +13,7 @@ export class Pipeline {
 
   /**
    * Return the stored list of functions
-   * @return {function[]}
+   * @return {Function[]}
    */
   get() {
     return this._queue;
@@ -21,7 +21,7 @@ export class Pipeline {
 
   /**
    * Push functions to the end of the pipeline
-   * @param {...function} fs
+   * @param {...Function} fs
    */
   add(...fs) {
     fs.forEach(function (f) {
@@ -31,8 +31,8 @@ export class Pipeline {
 
   /**
    * Insert a function after a function present in the pipeline
-   * @param  {function} existingFct
-   * @param  {function} newFct
+   * @param  {Function} existingFct
+   * @param  {Function} newFct
    */
   after(existingFct, newFct) {
     var pos = this._queue.indexOf(existingFct);
@@ -43,8 +43,8 @@ export class Pipeline {
 
   /**
    * Insert a function before a function present in the pipeline
-   * @param  {function} existingFct
-   * @param  {function} newFct
+   * @param  {Function} existingFct
+   * @param  {Function} newFct
    */
   before(existingFct, newFct) {
     var pos = this._queue.indexOf(existingFct);
@@ -55,7 +55,7 @@ export class Pipeline {
 
   /**
    * Remove a function from the pipeline
-   * @param  {function} f
+   * @param  {Function} f
    */
   remove(f) {
     var pos = this._queue.indexOf(f);
@@ -66,7 +66,7 @@ export class Pipeline {
 
   /**
    * Remove and return the last function in the pipeline
-   * @return {function}
+   * @return {Function}
    */
   pop() {
     return this._queue.pop();
@@ -82,8 +82,8 @@ export class Pipeline {
   /**
    * Run each function stored in the pipeline on some input
    * in FIFO order and returns the result in a list
-   * @param  {any|any[]} input
-   * @return {any[]}
+   * @param  {Any|Any[]} input
+   * @return {Any[]}
    */
   run(input) {
     if (!Array.isArray(input)) input = [input];

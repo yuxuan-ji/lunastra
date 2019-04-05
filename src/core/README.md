@@ -38,7 +38,7 @@ A wrapper on a user search configuration.
 
 * [Configuration](#Configuration)
     * [new exports.Configuration(config, fields)](#new_Configuration_new)
-    * [.get()](#Configuration+get) ⇒ <code>JSON</code>
+    * [.get()](#Configuration+get) ⇒ <code>Object</code>
     * [.reset()](#Configuration+reset)
     * [.addAllFieldsToUserConfig(bool, expand, fields)](#Configuration+addAllFieldsToUserConfig)
 
@@ -50,12 +50,12 @@ Initialize a configuration
 
 | Param | Type |
 | --- | --- |
-| config | <code>string</code> | 
-| fields | <code>Array.&lt;string&gt;</code> | 
+| config | <code>String</code> | 
+| fields | <code>Array.&lt;String&gt;</code> | 
 
 <a name="Configuration+get"></a>
 
-### configuration.get() ⇒ <code>JSON</code>
+### configuration.get() ⇒ <code>Object</code>
 Get current user config
 
 **Kind**: instance method of [<code>Configuration</code>](#Configuration)  
@@ -74,9 +74,9 @@ Add a fields to user search configuration
 
 | Param | Type | Description |
 | --- | --- | --- |
-| bool | <code>string</code> | Boolean model |
-| expand | <code>string</code> | Expand model |
-| fields | <code>Array.&lt;string&gt;</code> | fields of the index instance |
+| bool | <code>String</code> | Boolean model |
+| expand | <code>String</code> | Expand model |
+| fields | <code>Array.&lt;String&gt;</code> | fields of the index instance |
 
 <a name="DocumentProcessingManager"></a>
 
@@ -98,11 +98,11 @@ A key-value document store used for storing sets of tokens fordocuments stored 
 
 * [DocumentStore](#DocumentStore)
     * [new exports.DocumentStore(save, deepcpy)](#new_DocumentStore_new)
-    * [.hasDoc(id)](#DocumentStore+hasDoc) ⇒ <code>boolean</code>
-    * [.getDoc(id)](#DocumentStore+getDoc) ⇒ <code>object</code>
+    * [.hasDoc(id)](#DocumentStore+hasDoc) ⇒ <code>Boolean</code>
+    * [.getDoc(id)](#DocumentStore+getDoc) ⇒ <code>Object</code>
     * [.addDoc(id, doc)](#DocumentStore+addDoc)
     * [.removeDoc(id)](#DocumentStore+removeDoc)
-    * [.getFieldLength(id, fieldName)](#DocumentStore+getFieldLength) ⇒ <code>number</code>
+    * [.getFieldLength(id, fieldName)](#DocumentStore+getFieldLength) ⇒ <code>Number</code>
     * [.addFieldLength(id, fieldName, length)](#DocumentStore+addFieldLength)
     * [.updateFieldLength(id, fieldName, length)](#DocumentStore+updateFieldLength)
 
@@ -114,30 +114,30 @@ Initialize a document store
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| save | <code>boolean</code> | <code>true</code> | whether to store original documents |
-| deepcpy | <code>boolean</code> | <code>true</code> | whether to deep copy the original documents |
+| save | <code>Boolean</code> | <code>true</code> | whether to store original documents |
+| deepcpy | <code>Boolean</code> | <code>true</code> | whether to deep copy the original documents |
 
 <a name="DocumentStore+hasDoc"></a>
 
-### documentStore.hasDoc(id) ⇒ <code>boolean</code>
+### documentStore.hasDoc(id) ⇒ <code>Boolean</code>
 Check whether a given document id is stored
 
 **Kind**: instance method of [<code>DocumentStore</code>](#DocumentStore)  
 
 | Param | Type |
 | --- | --- |
-| id | <code>string</code> \| <code>number</code> | 
+| id | <code>String</code> \| <code>Number</code> | 
 
 <a name="DocumentStore+getDoc"></a>
 
-### documentStore.getDoc(id) ⇒ <code>object</code>
+### documentStore.getDoc(id) ⇒ <code>Object</code>
 Get a document by its id
 
 **Kind**: instance method of [<code>DocumentStore</code>](#DocumentStore)  
 
 | Param | Type |
 | --- | --- |
-| id | <code>string</code> \| <code>number</code> | 
+| id | <code>String</code> \| <code>Number</code> | 
 
 <a name="DocumentStore+addDoc"></a>
 
@@ -148,8 +148,8 @@ Store a document or update it if it already exists
 
 | Param | Type |
 | --- | --- |
-| id | <code>string</code> \| <code>number</code> | 
-| doc | <code>object</code> | 
+| id | <code>String</code> \| <code>Number</code> | 
+| doc | <code>Object</code> | 
 
 <a name="DocumentStore+removeDoc"></a>
 
@@ -160,20 +160,20 @@ Remove a document from the store by its id
 
 | Param | Type |
 | --- | --- |
-| id | <code>string</code> \| <code>number</code> | 
+| id | <code>String</code> \| <code>Number</code> | 
 
 <a name="DocumentStore+getFieldLength"></a>
 
-### documentStore.getFieldLength(id, fieldName) ⇒ <code>number</code>
+### documentStore.getFieldLength(id, fieldName) ⇒ <code>Number</code>
 Get the field length of a document by its id
 
 **Kind**: instance method of [<code>DocumentStore</code>](#DocumentStore)  
-**Returns**: <code>number</code> - field length  
+**Returns**: <code>Number</code> - field length  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| id | <code>number</code> \| <code>string</code> |  |
-| fieldName | <code>string</code> | field name |
+| id | <code>Number</code> \| <code>String</code> |  |
+| fieldName | <code>String</code> | field name |
 
 <a name="DocumentStore+addFieldLength"></a>
 
@@ -184,9 +184,9 @@ Add field length of a document's field tokens from pipeline results.The field l
 
 | Param | Type | Description |
 | --- | --- | --- |
-| id | <code>number</code> \| <code>string</code> |  |
-| fieldName | <code>string</code> | field name |
-| length | <code>number</code> | field length |
+| id | <code>Number</code> \| <code>String</code> |  |
+| fieldName | <code>String</code> | field name |
+| length | <code>Number</code> | field length |
 
 <a name="DocumentStore+updateFieldLength"></a>
 
@@ -197,9 +197,9 @@ Update field length of a document's field tokens from pipeline results.The fiel
 
 | Param | Type | Description |
 | --- | --- | --- |
-| id | <code>number</code> \| <code>string</code> |  |
-| fieldName | <code>string</code> | field name |
-| length | <code>number</code> | field length |
+| id | <code>Number</code> \| <code>String</code> |  |
+| fieldName | <code>String</code> | field name |
+| length | <code>Number</code> | field length |
 
 <a name="InvertedIndex"></a>
 
@@ -211,13 +211,13 @@ The entity on which queries are executed upon.
 * [InvertedIndex](#InvertedIndex)
     * [new exports.InvertedIndex()](#new_InvertedIndex_new)
     * [.addToken(token, tokenInfo, root)](#InvertedIndex+addToken)
-    * [.hasToken(token)](#InvertedIndex+hasToken) ⇒ <code>boolean</code>
-    * [.getNode(token)](#InvertedIndex+getNode) ⇒ <code>object</code>
-    * [.getDocs(token)](#InvertedIndex+getDocs) ⇒ <code>object</code>
+    * [.hasToken(token)](#InvertedIndex+hasToken) ⇒ <code>Boolean</code>
+    * [.getNode(token)](#InvertedIndex+getNode) ⇒ <code>Object</code>
+    * [.getDocs(token)](#InvertedIndex+getDocs) ⇒ <code>Object</code>
     * [.getTermFrequency(token, id)](#InvertedIndex+getTermFrequency) ⇒ <code>number</code>
-    * [.getDocFreq(token)](#InvertedIndex+getDocFreq) ⇒ <code>object</code>
+    * [.getDocFreq(token)](#InvertedIndex+getDocFreq) ⇒ <code>Object</code>
     * [.removeToken(token, id)](#InvertedIndex+removeToken)
-    * [.expandToken(token)](#InvertedIndex+expandToken) ⇒ <code>Array.&lt;string&gt;</code>
+    * [.expandToken(token)](#InvertedIndex+expandToken) ⇒ <code>Array.&lt;String&gt;</code>
 
 <a name="new_InvertedIndex_new"></a>
 
@@ -233,42 +233,42 @@ Adds a {token: tokenInfo} pair to the inverted index.If the token already exist
 
 | Param | Type | Description |
 | --- | --- | --- |
-| token | <code>string</code> |  |
-| tokenInfo | <code>object</code> | format: { id: 1, tf: 2} |
-| root | <code>object</code> | An optional node at which to start looking for the correct place to enter the doc, by default the root of this InvertedIndex is used. |
+| token | <code>String</code> |  |
+| tokenInfo | <code>Object</code> | format: { id: 1, tf: 2} |
+| root | <code>Object</code> | An optional node at which to start looking for the correct place to enter the doc, by default the root of this InvertedIndex is used. |
 
 <a name="InvertedIndex+hasToken"></a>
 
-### invertedIndex.hasToken(token) ⇒ <code>boolean</code>
+### invertedIndex.hasToken(token) ⇒ <code>Boolean</code>
 Check whether the token is stored in this inverted index
 
 **Kind**: instance method of [<code>InvertedIndex</code>](#InvertedIndex)  
 
 | Param | Type |
 | --- | --- |
-| token | <code>string</code> | 
+| token | <code>String</code> | 
 
 <a name="InvertedIndex+getNode"></a>
 
-### invertedIndex.getNode(token) ⇒ <code>object</code>
+### invertedIndex.getNode(token) ⇒ <code>Object</code>
 Get a node from the inverted index for a given token.If token not found in this InvertedIndex, return null.
 
 **Kind**: instance method of [<code>InvertedIndex</code>](#InvertedIndex)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| token | <code>string</code> | The token to get the node for. |
+| token | <code>String</code> | The token to get the node for. |
 
 <a name="InvertedIndex+getDocs"></a>
 
-### invertedIndex.getDocs(token) ⇒ <code>object</code>
+### invertedIndex.getDocs(token) ⇒ <code>Object</code>
 Get the documents of a given token.If token not found, return {}.
 
 **Kind**: instance method of [<code>InvertedIndex</code>](#InvertedIndex)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| token | <code>string</code> | The token to get the documents for. |
+| token | <code>String</code> | The token to get the documents for. |
 
 <a name="InvertedIndex+getTermFrequency"></a>
 
@@ -279,19 +279,19 @@ Get term frequency of given token in given document unique id.If token or docum
 
 | Param | Type | Description |
 | --- | --- | --- |
-| token | <code>string</code> | the token to get the documents for |
-| id | <code>string</code> \| <code>number</code> | the unique id of the document |
+| token | <code>String</code> | the token to get the documents for |
+| id | <code>String</code> \| <code>number</code> | the unique id of the document |
 
 <a name="InvertedIndex+getDocFreq"></a>
 
-### invertedIndex.getDocFreq(token) ⇒ <code>object</code>
+### invertedIndex.getDocFreq(token) ⇒ <code>Object</code>
 Get the document frequency of given token.If token not found, return 0.
 
 **Kind**: instance method of [<code>InvertedIndex</code>](#InvertedIndex)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| token | <code>string</code> | the token to get the documents for |
+| token | <code>String</code> | the token to get the documents for |
 
 <a name="InvertedIndex+removeToken"></a>
 
@@ -302,19 +302,19 @@ Remove the document identified by document's id from the token in the inverted i
 
 | Param | Type | Description |
 | --- | --- | --- |
-| token | <code>string</code> | remove the document from token |
-| id | <code>string</code> | the id of the document to remove from given token |
+| token | <code>String</code> | remove the document from token |
+| id | <code>String</code> | the id of the document to remove from given token |
 
 <a name="InvertedIndex+expandToken"></a>
 
-### invertedIndex.expandToken(token) ⇒ <code>Array.&lt;string&gt;</code>
+### invertedIndex.expandToken(token) ⇒ <code>Array.&lt;String&gt;</code>
 Find all the possible suffixes of given token using tokens currently in the inverted index.If token not found, return empty Array.
 
 **Kind**: instance method of [<code>InvertedIndex</code>](#InvertedIndex)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| token | <code>string</code> | the token to expand |
+| token | <code>String</code> | the token to expand |
 
 <a name="Pipeline"></a>
 
@@ -332,7 +332,7 @@ An ordered list of functions applied to both documenttokens and query tokens.
     * [.remove(f)](#Pipeline+remove)
     * [.pop()](#Pipeline+pop) ⇒ <code>function</code>
     * [.clear()](#Pipeline+clear)
-    * [.run(input)](#Pipeline+run) ⇒ <code>Array.&lt;any&gt;</code>
+    * [.run(input)](#Pipeline+run) ⇒ <code>Array.&lt;Any&gt;</code>
 
 <a name="new_Pipeline_new"></a>
 
@@ -405,14 +405,14 @@ Empty the pipeline
 **Kind**: instance method of [<code>Pipeline</code>](#Pipeline)  
 <a name="Pipeline+run"></a>
 
-### pipeline.run(input) ⇒ <code>Array.&lt;any&gt;</code>
+### pipeline.run(input) ⇒ <code>Array.&lt;Any&gt;</code>
 Run each function stored in the pipeline on some inputin FIFO order and returns the result in a list
 
 **Kind**: instance method of [<code>Pipeline</code>](#Pipeline)  
 
 | Param | Type |
 | --- | --- |
-| input | <code>any</code> \| <code>Array.&lt;any&gt;</code> | 
+| input | <code>Any</code> \| <code>Array.&lt;Any&gt;</code> | 
 
 <a name="QueryParser"></a>
 
@@ -422,15 +422,15 @@ Utility class to convert a user query into a model understandableby the Lunastr
 **Kind**: global class  
 <a name="QueryParser.build"></a>
 
-### QueryParser.build(query) ⇒ <code>object</code>
+### QueryParser.build(query) ⇒ <code>Object</code>
 Build the query into a model understandable by the Lunastra Index
 
 **Kind**: static method of [<code>QueryParser</code>](#QueryParser)  
-**Returns**: <code>object</code> - model  
+**Returns**: <code>Object</code> - model  
 
 | Param | Type |
 | --- | --- |
-| query | <code>string</code> | 
+| query | <code>String</code> | 
 
 <a name="Tokenizer"></a>
 
@@ -440,25 +440,25 @@ A wrapper around how Lunastra tokenizes strings
 **Kind**: global class  
 
 * [Tokenizer](#Tokenizer)
-    * [.tokenize(str)](#Tokenizer.tokenize) ⇒ <code>Array.&lt;string&gt;</code>
-    * [.getSeparator()](#Tokenizer.getSeparator) ⇒ <code>string</code> \| <code>regexp</code>
+    * [.tokenize(str)](#Tokenizer.tokenize) ⇒ <code>Array.&lt;String&gt;</code>
+    * [.getSeparator()](#Tokenizer.getSeparator) ⇒ <code>String</code> \| <code>RegExp</code>
     * [.setSeparator(sep)](#Tokenizer.setSeparator)
     * [.resetSeparator()](#Tokenizer.resetSeparator)
 
 <a name="Tokenizer.tokenize"></a>
 
-### Tokenizer.tokenize(str) ⇒ <code>Array.&lt;string&gt;</code>
-Split a string into a list of tokens
+### Tokenizer.tokenize(str) ⇒ <code>Array.&lt;String&gt;</code>
+Split a String into a list of tokens
 
 **Kind**: static method of [<code>Tokenizer</code>](#Tokenizer)  
 
 | Param | Type |
 | --- | --- |
-| str | <code>string</code> | 
+| str | <code>String</code> | 
 
 <a name="Tokenizer.getSeparator"></a>
 
-### Tokenizer.getSeparator() ⇒ <code>string</code> \| <code>regexp</code>
+### Tokenizer.getSeparator() ⇒ <code>String</code> \| <code>RegExp</code>
 Get the seperator
 
 **Kind**: static method of [<code>Tokenizer</code>](#Tokenizer)  
@@ -471,7 +471,7 @@ Set the seperator
 
 | Param | Type |
 | --- | --- |
-| sep | <code>string</code> \| <code>regexp</code> | 
+| sep | <code>String</code> \| <code>RegExp</code> | 
 
 <a name="Tokenizer.resetSeparator"></a>
 

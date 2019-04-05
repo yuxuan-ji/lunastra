@@ -8,8 +8,8 @@ export class DocumentStore {
 
   /**
    * Initialize a document store
-   * @param  {boolean} save    whether to store original documents
-   * @param  {boolean} deepcpy whether to deep copy the original documents
+   * @param  {Boolean} save    whether to store original documents
+   * @param  {Boolean} deepcpy whether to deep copy the original documents
    */
   constructor(save = true, deepcpy = true) {
     this._save = (save !== false);
@@ -25,8 +25,8 @@ export class DocumentStore {
 
   /**
    * Check whether a given document id is stored
-   * @param  {string|number}  id
-   * @return {boolean}
+   * @param  {String|Number}  id
+   * @return {Boolean}
    */
   hasDoc(id) {
     return id in this.docs;
@@ -34,8 +34,8 @@ export class DocumentStore {
 
   /**
    * Get a document by its id
-   * @param  {string|number} id
-   * @return {object}
+   * @param  {String|Number} id
+   * @return {Object}
    */
   getDoc(id) {
     if (this.hasDoc(id) === false) return null;
@@ -44,8 +44,8 @@ export class DocumentStore {
 
   /**
    * Store a document or update it if it already exists
-   * @param {string|number} id
-   * @param {object} doc
+   * @param {String|Number} id
+   * @param {Object} doc
    */
   addDoc(id, doc) {
     if (!this.hasDoc(id)) this.length++;
@@ -56,7 +56,7 @@ export class DocumentStore {
 
   /**
    * Remove a document from the store by its id
-   * @param  {string|number} id
+   * @param  {String|Number} id
    */
   removeDoc(id) {
     if (!this.hasDoc(id)) return;
@@ -69,9 +69,9 @@ export class DocumentStore {
   /**
    * Get the field length of a document by its id
    *
-   * @param {number|string} id
-   * @param {string} fieldName field name
-   * @return {number} field length
+   * @param {Number|String} id
+   * @param {String} fieldName field name
+   * @return {Number} field length
    */
   getFieldLength(id, fieldName) {
     if (id === null || id === undefined) return 0;
@@ -85,9 +85,9 @@ export class DocumentStore {
    * Add field length of a document's field tokens from pipeline results.
    * The field length of a document is used to do field length normalization
    * even without the original JSON document stored.
-   * @param {number|string} id
-   * @param {string} fieldName field name
-   * @param {number} length field length
+   * @param {Number|String} id
+   * @param {String} fieldName field name
+   * @param {Number} length field length
    */
   addFieldLength(id, fieldName, length) {
     if (id === null || id === undefined) return;
@@ -101,9 +101,9 @@ export class DocumentStore {
    * Update field length of a document's field tokens from pipeline results.
    * The field length of a document is used to do field length normalization
    * even without the original JSON document stored.
-   * @param {number|string} id
-   * @param {string} fieldName field name
-   * @param {number} length field length
+   * @param {Number|String} id
+   * @param {String} fieldName field name
+   * @param {Number} length field length
    */
   updateFieldLength(id, fieldName, length) {
     if (id === null || id === undefined) return;

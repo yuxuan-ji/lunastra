@@ -7,8 +7,8 @@ export class Configuration {
 
   /**
    * Initialize a configuration
-   * @param  {string} config
-   * @param  {string[]} fields
+   * @param  {String} config
+   * @param  {String[]} fields
    */
   constructor(config, fields) {
     config = config || '';
@@ -35,7 +35,7 @@ export class Configuration {
 
   /**
    * Get current user config
-   * @return {JSON}
+   * @return {Object}
    */
   get() {
     return this.config;
@@ -51,7 +51,7 @@ export class Configuration {
   /**
    * Build default search configuration
    * @private
-   * @param  {string[]} fields
+   * @param  {String[]} fields
    */
   buildDefaultConfig(fields) {
     this.reset();
@@ -67,8 +67,8 @@ export class Configuration {
   /**
    * Build user search configuration
    * @private
-   * @param  {JSON} config
-   * @param  {string[]} fields
+   * @param  {Object} config
+   * @param  {String[]} fields
    */
   buildUserConfig(config, fields) {
     var globalBool = "OR";
@@ -108,9 +108,9 @@ export class Configuration {
 
   /**
    * Add a fields to user search configuration
-   * @param {string} bool   Boolean model
-   * @param {string} expand Expand model
-   * @param {string[]} fields fields of the index instance
+   * @param {String} bool   Boolean model
+   * @param {String} expand Expand model
+   * @param {String[]} fields fields of the index instance
    */
   addAllFieldsToUserConfig(bool, expand, fields) {
     fields.forEach(function (field) {

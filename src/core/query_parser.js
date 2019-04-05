@@ -6,8 +6,8 @@ export class QueryParser {
 
   /**
    * Build the query into a model understandable by the Lunastra Index
-   * @param  {string} query
-   * @return {object} model
+   * @param  {String} query
+   * @return {Object} model
    */
   static build(query) {
     var model = {

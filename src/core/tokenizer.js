@@ -6,9 +6,9 @@ import {toString} from '../utils/utils.js';
 export class Tokenizer {
 
   /**
-   * Split a string into a list of tokens
-   * @param  {string} str
-   * @return {string[]}
+   * Split a String into a list of tokens
+   * @param  {String} str
+   * @return {String[]}
    */
   static tokenize(str) {
     if (!arguments.length || str === null || str === undefined) return [];
@@ -33,7 +33,7 @@ export class Tokenizer {
 
   /**
    * Get the seperator
-   * @return {string|regexp}
+   * @return {String|RegExp}
    */
   static getSeparator() {
     return Tokenizer.separator;
@@ -41,7 +41,7 @@ export class Tokenizer {
 
   /**
    * Set the seperator
-   * @param {string|regexp} sep
+   * @param {String|RegExp} sep
    */
   static setSeparator(sep) {
     Tokenizer.separator = sep;
