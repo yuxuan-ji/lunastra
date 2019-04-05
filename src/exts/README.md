@@ -18,9 +18,9 @@
 Pipeline Extension: Stemmer
 
 **Kind**: global class  
-<a name="Stemmer.run"></a>
+<a name="Stemmer.stemmer"></a>
 
-### Stemmer.run(word) ⇒ <code>String</code>
+### Stemmer.stemmer(word) ⇒ <code>String</code>
 Reduce a word to its root and return the result(implementation of the PorterStemmer taken from http://tartarus.org/~martin)
 
 **Kind**: static method of [<code>Stemmer</code>](#Stemmer)  
@@ -37,14 +37,14 @@ Pipeline Extension: StopWordFilter
 **Kind**: global class  
 
 * [StopWordFilter](#StopWordFilter)
-    * [.run(token)](#StopWordFilter.run) ⇒ <code>String</code>
+    * [.stopWordFilter(token)](#StopWordFilter.stopWordFilter) ⇒ <code>String</code>
     * [.clearStopWords()](#StopWordFilter.clearStopWords)
     * [.addStopWords(words)](#StopWordFilter.addStopWords)
     * [.resetStopWords()](#StopWordFilter.resetStopWords)
 
-<a name="StopWordFilter.run"></a>
+<a name="StopWordFilter.stopWordFilter"></a>
 
-### StopWordFilter.run(token) ⇒ <code>String</code>
+### StopWordFilter.stopWordFilter(token) ⇒ <code>String</code>
 Strip out stop words from the token andreturn the result
 
 **Kind**: static method of [<code>StopWordFilter</code>](#StopWordFilter)  
@@ -82,9 +82,9 @@ Reset to use default stop words
 Pipeline Extension: Trimmer
 
 **Kind**: global class  
-<a name="Trimmer.run"></a>
+<a name="Trimmer.trimmer"></a>
 
-### Trimmer.run(token) ⇒ <code>String</code>
+### Trimmer.trimmer(token) ⇒ <code>String</code>
 Trim non word characters from the begining and end of a Stringand return the result
 
 **Kind**: static method of [<code>Trimmer</code>](#Trimmer)  
