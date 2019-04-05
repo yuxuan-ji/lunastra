@@ -127,8 +127,8 @@ var Configuration =
 function () {
   /**
    * Initialize a configuration
-   * @param  {string} config
-   * @param  {string[]} fields
+   * @param  {String} config
+   * @param  {String[]} fields
    */
   function Configuration(config, fields) {
     _classCallCheck(this, Configuration);
@@ -156,7 +156,7 @@ function () {
   }
   /**
    * Get current user config
-   * @return {JSON}
+   * @return {Object}
    */
 
 
@@ -177,7 +177,7 @@ function () {
     /**
      * Build default search configuration
      * @private
-     * @param  {string[]} fields
+     * @param  {String[]} fields
      */
 
   }, {
@@ -195,8 +195,8 @@ function () {
     /**
      * Build user search configuration
      * @private
-     * @param  {JSON} config
-     * @param  {string[]} fields
+     * @param  {Object} config
+     * @param  {String[]} fields
      */
 
   }, {
@@ -239,9 +239,9 @@ function () {
     }
     /**
      * Add a fields to user search configuration
-     * @param {string} bool   Boolean model
-     * @param {string} expand Expand model
-     * @param {string[]} fields fields of the index instance
+     * @param {String} bool   Boolean model
+     * @param {String} expand Expand model
+     * @param {String[]} fields fields of the index instance
      */
 
   }, {
@@ -296,8 +296,8 @@ var DocumentStore =
 function () {
   /**
    * Initialize a document store
-   * @param  {boolean} save    whether to store original documents
-   * @param  {boolean} deepcpy whether to deep copy the original documents
+   * @param  {Boolean} save    whether to store original documents
+   * @param  {Boolean} deepcpy whether to deep copy the original documents
    */
   function DocumentStore() {
     var save = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
@@ -319,8 +319,8 @@ function () {
     }
     /**
      * Check whether a given document id is stored
-     * @param  {string|number}  id
-     * @return {boolean}
+     * @param  {String|Number}  id
+     * @return {Boolean}
      */
 
   }, {
@@ -330,8 +330,8 @@ function () {
     }
     /**
      * Get a document by its id
-     * @param  {string|number} id
-     * @return {object}
+     * @param  {String|Number} id
+     * @return {Object}
      */
 
   }, {
@@ -342,8 +342,8 @@ function () {
     }
     /**
      * Store a document or update it if it already exists
-     * @param {string|number} id
-     * @param {object} doc
+     * @param {String|Number} id
+     * @param {Object} doc
      */
 
   }, {
@@ -354,7 +354,7 @@ function () {
     }
     /**
      * Remove a document from the store by its id
-     * @param  {string|number} id
+     * @param  {String|Number} id
      */
 
   }, {
@@ -368,9 +368,9 @@ function () {
     /**
      * Get the field length of a document by its id
      *
-     * @param {number|string} id
-     * @param {string} fieldName field name
-     * @return {number} field length
+     * @param {Number|String} id
+     * @param {String} fieldName field name
+     * @return {Number} field length
      */
 
   }, {
@@ -388,9 +388,9 @@ function () {
      * Add field length of a document's field tokens from pipeline results.
      * The field length of a document is used to do field length normalization
      * even without the original JSON document stored.
-     * @param {number|string} id
-     * @param {string} fieldName field name
-     * @param {number} length field length
+     * @param {Number|String} id
+     * @param {String} fieldName field name
+     * @param {Number} length field length
      */
     value: function addFieldLength(id, fieldName, length) {
       if (id === null || id === undefined) return;
@@ -402,9 +402,9 @@ function () {
      * Update field length of a document's field tokens from pipeline results.
      * The field length of a document is used to do field length normalization
      * even without the original JSON document stored.
-     * @param {number|string} id
-     * @param {string} fieldName field name
-     * @param {number} length field length
+     * @param {Number|String} id
+     * @param {String} fieldName field name
+     * @param {Number} length field length
      */
 
   }, {
@@ -477,9 +477,9 @@ function () {
      * By default this function starts at the root of the current inverted index, however
      * it can start at any node of the inverted index if required.
      *
-     * @param {string} token
-     * @param {object} tokenInfo format: { id: 1, tf: 2}
-     * @param {object} root An optional node at which to start looking for the
+     * @param {String} token
+     * @param {Object} tokenInfo format: { id: 1, tf: 2}
+     * @param {Object} root An optional node at which to start looking for the
      * correct place to enter the doc, by default the root of this InvertedIndex
      * is used.
    */
@@ -516,8 +516,8 @@ function () {
     }
     /**
      * Check whether the token is stored in this inverted index
-     * @param  {string}  token
-     * @return {boolean}
+     * @param  {String}  token
+     * @return {Boolean}
      */
 
   }, {
@@ -536,8 +536,8 @@ function () {
     /**
      * Get a node from the inverted index for a given token.
      * If token not found in this InvertedIndex, return null.
-     * @param {string} token The token to get the node for.
-     * @return {object}
+     * @param {String} token The token to get the node for.
+     * @return {Object}
      */
 
   }, {
@@ -556,8 +556,8 @@ function () {
     /**
      * Get the documents of a given token.
      * If token not found, return {}.
-     * @param {string} token The token to get the documents for.
-     * @return {object}
+     * @param {String} token The token to get the documents for.
+     * @return {Object}
      */
 
   }, {
@@ -574,8 +574,8 @@ function () {
     /**
      * Get term frequency of given token in given document unique id.
      * If token or document id not found, return 0.
-     * @param {string} token the token to get the documents for
-     * @param {string|number} id the unique id of the document
+     * @param {String} token the token to get the documents for
+     * @param {String|number} id the unique id of the document
      * @return {number}
      */
 
@@ -597,8 +597,8 @@ function () {
     /**
      * Get the document frequency of given token.
      * If token not found, return 0.
-     * @param {string} token the token to get the documents for
-     * @return {object}
+     * @param {String} token the token to get the documents for
+     * @return {Object}
      */
 
   }, {
@@ -614,8 +614,8 @@ function () {
     }
     /**
      * Remove the document identified by document's id from the token in the inverted index.
-     * @param {string} token remove the document from token
-     * @param {string} id the id of the document to remove from given token
+     * @param {String} token remove the document from token
+     * @param {String} id the id of the document to remove from given token
      */
 
   }, {
@@ -633,8 +633,8 @@ function () {
     /**
      * Find all the possible suffixes of given token using tokens currently in the inverted index.
      * If token not found, return empty Array.
-     * @param {string} token the token to expand
-     * @return {string[]}
+     * @param {String} token the token to expand
+     * @return {String[]}
      */
 
   }, {
@@ -705,7 +705,7 @@ function () {
   }
   /**
    * Return the stored list of functions
-   * @return {function[]}
+   * @return {Function[]}
    */
 
 
@@ -716,7 +716,7 @@ function () {
     }
     /**
      * Push functions to the end of the pipeline
-     * @param {...function} fs
+     * @param {...Function} fs
      */
 
   }, {
@@ -732,8 +732,8 @@ function () {
     }
     /**
      * Insert a function after a function present in the pipeline
-     * @param  {function} existingFct
-     * @param  {function} newFct
+     * @param  {Function} existingFct
+     * @param  {Function} newFct
      */
 
   }, {
@@ -750,8 +750,8 @@ function () {
 
     /**
      * Insert a function before a function present in the pipeline
-     * @param  {function} existingFct
-     * @param  {function} newFct
+     * @param  {Function} existingFct
+     * @param  {Function} newFct
      */
     value: function before(existingFct, newFct) {
       var pos = this._queue.indexOf(existingFct);
@@ -765,7 +765,7 @@ function () {
 
     /**
      * Remove a function from the pipeline
-     * @param  {function} f
+     * @param  {Function} f
      */
     value: function remove(f) {
       var pos = this._queue.indexOf(f);
@@ -779,7 +779,7 @@ function () {
 
     /**
      * Remove and return the last function in the pipeline
-     * @return {function}
+     * @return {Function}
      */
     value: function pop() {
       return this._queue.pop();
@@ -796,8 +796,8 @@ function () {
     /**
      * Run each function stored in the pipeline on some input
      * in FIFO order and returns the result in a list
-     * @param  {any|any[]} input
-     * @return {any[]}
+     * @param  {Any|Any[]} input
+     * @return {Any[]}
      */
 
   }, {
@@ -807,10 +807,10 @@ function () {
       var output = input; // Apply each pipeline extension on each element of the input
       // and aggregate the result
 
-      this._queue.forEach(function (ext) {
+      this._queue.forEach(function (f) {
         var pipelineOutput = [];
-        output.forEach(function (item) {
-          var extensionOutput = ext.run(item);
+        output.forEach(function (item, index, array) {
+          var extensionOutput = f(item, index, array);
           if (!Array.isArray(extensionOutput)) extensionOutput = [extensionOutput];
           extensionOutput.forEach(function (el) {
             if (el !== null && el !== undefined && el !== "") pipelineOutput.push(el);
@@ -867,9 +867,9 @@ function () {
     key: "tokenize",
 
     /**
-     * Split a string into a list of tokens
-     * @param  {string} str
-     * @return {string[]}
+     * Split a String into a list of tokens
+     * @param  {String} str
+     * @return {String[]}
      */
     value: function tokenize(str) {
       if (!arguments.length || str === null || str === undefined) return [];
@@ -893,7 +893,7 @@ function () {
     }
     /**
      * Get the seperator
-     * @return {string|regexp}
+     * @return {String|RegExp}
      */
 
   }, {
@@ -903,7 +903,7 @@ function () {
     }
     /**
      * Set the seperator
-     * @param {string|regexp} sep
+     * @param {String|RegExp} sep
      */
 
   }, {
@@ -969,8 +969,8 @@ function () {
   /**
    * Check whether an event is registered
    * @private
-   * @param {string} event
-   * @return {boolean}
+   * @param {String} event
+   * @return {Boolean}
    */
 
 
@@ -987,8 +987,8 @@ function () {
      *
      * Can bind a single function to many different events in one call.
      *
-     * @param {string} events the name(s) of events to bind this function to
-     * @param {function} f the function to call when an event is fired
+     * @param {String} events the name(s) of events to bind this function to
+     * @param {Function} f the function to call when an event is fired
      */
     value: function addListener() {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
@@ -1005,8 +1005,8 @@ function () {
     }
     /**
      * Unbind a handler from an event
-     * @param  {string} event
-     * @param  {function} f
+     * @param  {String} event
+     * @param  {Function} f
      */
 
   }, {
@@ -1020,8 +1020,8 @@ function () {
     }
     /**
      * Emit an event
-     * @param  {string} event the event to emit
-     * @param {...any} args additional data that the event should expose
+     * @param  {String} event the event to emit
+     * @param {...Any} args additional data that the event should expose
      */
 
   }, {
@@ -1083,15 +1083,15 @@ function () {
   }
 
   _createClass(Stemmer, null, [{
-    key: "run",
+    key: "stemmer",
 
     /**
      * Reduce a word to its root and return the result
      * (implementation of the PorterStemmer taken from http://tartarus.org/~martin)
-     * @param  {string} word
-     * @return {string}
+     * @param  {String} word
+     * @return {String}
      */
-    value: function run(word) {
+    value: function stemmer(word) {
       var step2list = {
         "ational": "ate",
         "tional": "tion",
@@ -1353,15 +1353,15 @@ function () {
   }
 
   _createClass(StopWordFilter, null, [{
-    key: "run",
+    key: "stopWordFilter",
 
     /**
      * Strip out stop words from the token and
      * return the result
-     * @param  {string} token
-     * @return {string}
+     * @param  {String} token
+     * @return {String}
      */
-    value: function run(token) {
+    value: function stopWordFilter(token) {
       if (token && StopWordFilter.stopWords[token] !== true) {
         return token;
       }
@@ -1379,7 +1379,7 @@ function () {
     }
     /**
      * Register a list of stop words
-     * @param {string[]} words
+     * @param {String[]} words
      */
 
   }, {
@@ -1563,15 +1563,15 @@ function () {
   }
 
   _createClass(Trimmer, null, [{
-    key: "run",
+    key: "trimmer",
 
     /**
-     * Trim non word characters from the begining and end of a string
+     * Trim non word characters from the begining and end of a String
      * and return the result
-     * @param  {string} token
-     * @return {string}
+     * @param  {String} token
+     * @return {String}
      */
-    value: function run(token) {
+    value: function trimmer(token) {
       if (token === null || token === undefined) {
         throw new Error('token should not be undefined');
       }
@@ -1645,7 +1645,7 @@ function () {
   }
   /**
    * Return the fields registered in the index
-   * @return {string[]}
+   * @return {String[]}
    */
 
 
@@ -1656,7 +1656,7 @@ function () {
     }
     /**
      * Register a field in the index
-     * @param {string} fieldName
+     * @param {String} fieldName
      */
 
   }, {
@@ -1669,7 +1669,7 @@ function () {
     }
     /**
      * Set the field used to uniquely identify a document (default is 'id')
-     * @param {string} fieldName
+     * @param {String} fieldName
      */
 
   }, {
@@ -1680,7 +1680,7 @@ function () {
     }
     /**
      * Bind a handler to the specified events
-     * @param  {...string} events
+     * @param  {...String} events
      * @param {function} f
      */
 
@@ -1695,7 +1695,7 @@ function () {
     }
     /**
      * Unbind a handler from an event
-     * @param  {string} event
+     * @param  {String} event
      * @param  {function} f
      */
 
@@ -1706,7 +1706,7 @@ function () {
     }
     /**
      * Sets whether origin JSON documents are stored
-     * @param  {boolean} save default true
+     * @param  {Boolean} save default true
      * @return {this}
      */
 
@@ -1718,8 +1718,8 @@ function () {
     }
     /**
      * Adds a document to the index
-     * @param {object} doc
-     * @param {boolean} emitEvent whether an event should be triggered
+     * @param {Object} doc
+     * @param {Boolean} emitEvent whether an event should be triggered
      */
 
   }, {
@@ -1752,8 +1752,8 @@ function () {
     }
     /**
      * Remove a document from the index by its unique id
-     * @param  {string|number} id
-     * @param  {boolean} emitEvent whether an event should be triggered
+     * @param  {String|Number} id
+     * @param  {Boolean} emitEvent whether an event should be triggered
      */
 
   }, {
@@ -1772,8 +1772,8 @@ function () {
     }
     /**
      * Remove a document from the index
-     * @param  {object} doc
-     * @param  {boolean} emitEvent whether an event should be triggered
+     * @param  {Object} doc
+     * @param  {Boolean} emitEvent whether an event should be triggered
      */
 
   }, {
@@ -1796,8 +1796,8 @@ function () {
     }
     /**
      * Update a document in the index
-     * @param  {object} doc
-     * @param  {boolean} emitEvent whether an event should be triggered
+     * @param  {Object} doc
+     * @param  {Boolean} emitEvent whether an event should be triggered
      */
 
   }, {
@@ -1810,7 +1810,7 @@ function () {
     }
     /**
      * Searches the index using the passed query.
-     * Queries should be a string, multiple words are allowed.
+     * Queries should be a String, multiple words are allowed.
      *
      * If config is null, will search all fields defaultly, and lead to OR based query.
      * If config is specified, will search specified with query time boosting.
@@ -1822,13 +1822,13 @@ function () {
      * Each query term is expanded, so that the term 'he' might be expanded to
      * 'hello' and 'help' if those terms were already included in the index.
      *
-     * Matching documents are returned as an array of objects, each object contains
+     * Matching documents are returned as an array of objects, each Object contains
      * the matching document id, as set for this index, and the similarity score
      * for this document against the query.
      *
-     * @param {string} query The query to search the index with.
+     * @param {String} query The query to search the index with.
      * @param {JSON} userConfig The user query config, JSON format.
-     * @return {object}
+     * @return {Object}
      */
 
   }, {
@@ -1907,10 +1907,10 @@ function () {
     }
     /**
      * Search a list of tokens within a field
-     * @param  {string[]} queryTokens
-     * @param  {string} fieldName
+     * @param  {String[]} queryTokens
+     * @param  {String} fieldName
      * @param  {Configuration} config
-     * @return {object}
+     * @return {Object}
      */
 
   }, {
@@ -1991,9 +1991,9 @@ function () {
      * Exact operation depends on the op parameter. If op is 'AND', then only the
      * intersection of the two score lists is retained. Otherwise, the union of
      * the two score lists is returned.
-     * @param {boolean} accumScores should be null on first call
-     * @param {object} scores new scores to merge into accumScores
-     * @param {string} op merge operation (should be 'AND' or 'OR')
+     * @param {Boolean} accumScores should be null on first call
+     * @param {Object} scores new scores to merge into accumScores
+     * @param {String} op merge operation (should be 'AND' or 'OR')
      */
 
   }, {
@@ -2027,9 +2027,9 @@ function () {
     }
     /**
      * Record query tokens of retrieved documents
-     * @param  {object} docTokens
-     * @param  {string} token
-     * @param  {object} docs
+     * @param  {Object} docTokens
+     * @param  {String} token
+     * @param  {Object} docs
      */
 
   }, {
@@ -2045,9 +2045,9 @@ function () {
     }
     /**
      * Calculate the inverse document frequency of a term within a field
-     * @param  {string} term
-     * @param  {string} field
-     * @return {number}
+     * @param  {String} term
+     * @param  {String} field
+     * @return {Number}
      */
 
   }, {
@@ -2062,10 +2062,10 @@ function () {
     }
     /**
      * Get the normalized coordination factor
-     * @param  {object} scores
-     * @param  {oobject} docTokens
-     * @param  {number} n
-     * @return {object}
+     * @param  {Object} scores
+     * @param  {Object} docTokens
+     * @param  {Number} n
+     * @return {Object}
      */
 
   }, {
@@ -2251,12 +2251,12 @@ Object.keys(_utils).forEach(function (key) {
 
 /**
  * A helper method to initialize a Lunastra Index
- * @param  {object} config
+ * @param  {Object} config
  * @return {Index}
  */
 function init(config) {
   var index = new _index.Index();
-  index.pipeline.add(_trimmer.Trimmer, _stop_word_filters.StopWordFilter, _stemmer.Stemmer);
+  index.pipeline.add(_trimmer.Trimmer.trimmer, _stop_word_filters.StopWordFilter.stopWordFilter, _stemmer.Stemmer.stemmer);
   if (config) config.call(index, index);
   return index;
 }
@@ -2284,7 +2284,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 /**
  * Print a warning message to the console
- * @param  {string} message
+ * @param  {String} message
  */
 function warn(global) {
   return function (message) {
@@ -2294,11 +2294,11 @@ function warn(global) {
   };
 }
 /**
- * Returns and empty string for null and undefined,
- * otherwise returns the result of the object's
+ * Returns an empty String for null and undefined,
+ * otherwise returns the result of the Object's
  * '.toString()' method
- * @param  {object} obj
- * @return {string}
+ * @param  {Object} obj
+ * @return {String}
  */
 
 
@@ -2307,9 +2307,9 @@ function toString(obj) {
   return obj.toString();
 }
 /**
- * Return a deep copy of the object
- * @param  {object} obj
- * @return {object}
+ * Return a deep copy of the Object
+ * @param  {Object} obj
+ * @return {Object}
  */
 
 

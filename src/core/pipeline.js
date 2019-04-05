@@ -91,11 +91,11 @@ export class Pipeline {
 
     // Apply each pipeline extension on each element of the input
     // and aggregate the result
-    this._queue.forEach(function (ext) {
+    this._queue.forEach(function (f) {
       var pipelineOutput = [];
 
-      output.forEach(function (item) {
-        var extensionOutput = ext.run(item);
+      output.forEach(function (item, index, array) {
+        var extensionOutput = f(item, index, array);
         if (!Array.isArray(extensionOutput)) extensionOutput = [extensionOutput];
 
         extensionOutput.forEach(function (el) {

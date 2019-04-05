@@ -9,7 +9,7 @@ export class Trimmer {
    * @param  {String} token
    * @return {String}
    */
-  static run(token) {
+  static trimmer(token) {
     if (token === null || token === undefined) {
       throw new Error('token should not be undefined');
     }

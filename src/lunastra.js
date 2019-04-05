@@ -12,9 +12,9 @@ export function init(config) {
   var index = new Index();
 
   index.pipeline.add(
-    Trimmer,
-    StopWordFilter,
-    Stemmer
+    Trimmer.trimmer,
+    StopWordFilter.stopWordFilter,
+    Stemmer.stemmer
   );
 
   if (config) config.call(index, index);
