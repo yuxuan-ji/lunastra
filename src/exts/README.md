@@ -20,14 +20,14 @@ Pipeline Extension: Stemmer
 **Kind**: global class  
 <a name="Stemmer.run"></a>
 
-### Stemmer.run(word) ⇒ <code>string</code>
+### Stemmer.run(word) ⇒ <code>String</code>
 Reduce a word to its root and return the result(implementation of the PorterStemmer taken from http://tartarus.org/~martin)
 
 **Kind**: static method of [<code>Stemmer</code>](#Stemmer)  
 
 | Param | Type |
 | --- | --- |
-| word | <code>string</code> | 
+| word | <code>String</code> | 
 
 <a name="StopWordFilter"></a>
 
@@ -37,21 +37,21 @@ Pipeline Extension: StopWordFilter
 **Kind**: global class  
 
 * [StopWordFilter](#StopWordFilter)
-    * [.run(token)](#StopWordFilter.run) ⇒ <code>string</code>
+    * [.run(token)](#StopWordFilter.run) ⇒ <code>String</code>
     * [.clearStopWords()](#StopWordFilter.clearStopWords)
     * [.addStopWords(words)](#StopWordFilter.addStopWords)
     * [.resetStopWords()](#StopWordFilter.resetStopWords)
 
 <a name="StopWordFilter.run"></a>
 
-### StopWordFilter.run(token) ⇒ <code>string</code>
+### StopWordFilter.run(token) ⇒ <code>String</code>
 Strip out stop words from the token andreturn the result
 
 **Kind**: static method of [<code>StopWordFilter</code>](#StopWordFilter)  
 
 | Param | Type |
 | --- | --- |
-| token | <code>string</code> | 
+| token | <code>String</code> | 
 
 <a name="StopWordFilter.clearStopWords"></a>
 
@@ -68,7 +68,7 @@ Register a list of stop words
 
 | Param | Type |
 | --- | --- |
-| words | <code>Array.&lt;string&gt;</code> | 
+| words | <code>Array.&lt;String&gt;</code> | 
 
 <a name="StopWordFilter.resetStopWords"></a>
 
@@ -84,12 +84,12 @@ Pipeline Extension: Trimmer
 **Kind**: global class  
 <a name="Trimmer.run"></a>
 
-### Trimmer.run(token) ⇒ <code>string</code>
-Trim non word characters from the begining and end of a stringand return the result
+### Trimmer.run(token) ⇒ <code>String</code>
+Trim non word characters from the begining and end of a Stringand return the result
 
 **Kind**: static method of [<code>Trimmer</code>](#Trimmer)  
 
 | Param | Type |
 | --- | --- |
-| token | <code>string</code> | 
+| token | <code>String</code> | 
 

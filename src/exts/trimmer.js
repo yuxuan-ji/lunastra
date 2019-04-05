@@ -4,10 +4,10 @@
 export class Trimmer {
 
   /**
-   * Trim non word characters from the begining and end of a string
+   * Trim non word characters from the begining and end of a String
    * and return the result
-   * @param  {string} token
-   * @return {string}
+   * @param  {String} token
+   * @return {String}
    */
   static run(token) {
     if (token === null || token === undefined) {

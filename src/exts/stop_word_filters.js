@@ -6,8 +6,8 @@ export class StopWordFilter {
   /**
    * Strip out stop words from the token and
    * return the result
-   * @param  {string} token
-   * @return {string}
+   * @param  {String} token
+   * @return {String}
    */
   static run(token) {
     if (token && StopWordFilter.stopWords[token] !== true) {
@@ -25,7 +25,7 @@ export class StopWordFilter {
 
   /**
    * Register a list of stop words
-   * @param {string[]} words
+   * @param {String[]} words
    */
   static addStopWords(words) {
     if (words == null || Array.isArray(words) === false) return;

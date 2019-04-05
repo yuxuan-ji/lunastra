@@ -10,8 +10,8 @@ export class Stemmer {
   /**
    * Reduce a word to its root and return the result
    * (implementation of the PorterStemmer taken from http://tartarus.org/~martin)
-   * @param  {string} word
-   * @return {string}
+   * @param  {String} word
+   * @return {String}
    */
   static run(word) {
     var step2list = {
