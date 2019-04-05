@@ -41,7 +41,7 @@ Bind a handler function to a specific event(s).Can bind a single function to m
 
 | Param | Type | Description |
 | --- | --- | --- |
-| events | <code>string</code> | the name(s) of events to bind this function to |
+| events | <code>String</code> | the name(s) of events to bind this function to |
 | f | <code>function</code> | the function to call when an event is fired |
 
 <a name="EventEmitter+removeListener"></a>
@@ -53,7 +53,7 @@ Unbind a handler from an event
 
 | Param | Type |
 | --- | --- |
-| event | <code>string</code> | 
+| event | <code>String</code> | 
 | f | <code>function</code> | 
 
 <a name="EventEmitter+emit"></a>
@@ -65,8 +65,8 @@ Emit an event
 
 | Param | Type | Description |
 | --- | --- | --- |
-| event | <code>string</code> | the event to emit |
-| ...args | <code>any</code> | additional data that the event should expose |
+| event | <code>String</code> | the event to emit |
+| ...args | <code>Any</code> | additional data that the event should expose |
 
 <a name="QueryEvents"></a>
 
@@ -77,60 +77,60 @@ Enum for Query Events
 **Read only**: true  
 
 * [QueryEvents](#QueryEvents) : <code>object</code>
-    * [.buildingQuery](#QueryEvents.buildingQuery) : <code>string</code>
-    * [.doneBuildingQuery](#QueryEvents.doneBuildingQuery) : <code>string</code>
-    * [.duringQuery](#QueryEvents.duringQuery) : <code>string</code>
-    * [.newQuery](#QueryEvents.newQuery) : <code>string</code>
-    * [.noResults](#QueryEvents.noResults) : <code>string</code>
-    * [.preprocessResults](#QueryEvents.preprocessResults) : <code>string</code>
-    * [.queryError](#QueryEvents.queryError) : <code>string</code>
-    * [.querySuccess](#QueryEvents.querySuccess) : <code>string</code>
+    * [.buildingQuery](#QueryEvents.buildingQuery) : <code>String</code>
+    * [.doneBuildingQuery](#QueryEvents.doneBuildingQuery) : <code>String</code>
+    * [.duringQuery](#QueryEvents.duringQuery) : <code>String</code>
+    * [.newQuery](#QueryEvents.newQuery) : <code>String</code>
+    * [.noResults](#QueryEvents.noResults) : <code>String</code>
+    * [.preprocessResults](#QueryEvents.preprocessResults) : <code>String</code>
+    * [.queryError](#QueryEvents.queryError) : <code>String</code>
+    * [.querySuccess](#QueryEvents.querySuccess) : <code>String</code>
 
 <a name="QueryEvents.buildingQuery"></a>
 
-### QueryEvents.buildingQuery : <code>string</code>
-Triggered when the query is being built.The string value is 'buildingQuery'.
+### QueryEvents.buildingQuery : <code>String</code>
+Triggered when the query is being built.The String value is 'buildingQuery'.
 
 **Kind**: static property of [<code>QueryEvents</code>](#QueryEvents)  
 <a name="QueryEvents.doneBuildingQuery"></a>
 
-### QueryEvents.doneBuildingQuery : <code>string</code>
-Triggered when the query is done being built.The string value is 'doneBuildingQuery'.
+### QueryEvents.doneBuildingQuery : <code>String</code>
+Triggered when the query is done being built.The String value is 'doneBuildingQuery'.
 
 **Kind**: static property of [<code>QueryEvents</code>](#QueryEvents)  
 <a name="QueryEvents.duringQuery"></a>
 
-### QueryEvents.duringQuery : <code>string</code>
-Triggered when the query is being executed on the Search API.The string value is 'duringQuery'.
+### QueryEvents.duringQuery : <code>String</code>
+Triggered when the query is being executed on the Search API.The String value is 'duringQuery'.
 
 **Kind**: static property of [<code>QueryEvents</code>](#QueryEvents)  
 <a name="QueryEvents.newQuery"></a>
 
-### QueryEvents.newQuery : <code>string</code>
-Triggered when a new query is launched.The string value is 'newQuery'.
+### QueryEvents.newQuery : <code>String</code>
+Triggered when a new query is launched.The String value is 'newQuery'.
 
 **Kind**: static property of [<code>QueryEvents</code>](#QueryEvents)  
 <a name="QueryEvents.noResults"></a>
 
-### QueryEvents.noResults : <code>string</code>
-Triggered when there is no result for a particular query.The string value is 'noResults'.
+### QueryEvents.noResults : <code>String</code>
+Triggered when there is no result for a particular query.The String value is 'noResults'.
 
 **Kind**: static property of [<code>QueryEvents</code>](#QueryEvents)  
 <a name="QueryEvents.preprocessResults"></a>
 
-### QueryEvents.preprocessResults : <code>string</code>
-Triggered before the QueryEvents.querySuccess event.This allows external code to modify the results before rendering them.The string value is 'preprocessResults'.
+### QueryEvents.preprocessResults : <code>String</code>
+Triggered before the QueryEvents.querySuccess event.This allows external code to modify the results before rendering them.The String value is 'preprocessResults'.
 
 **Kind**: static property of [<code>QueryEvents</code>](#QueryEvents)  
 <a name="QueryEvents.queryError"></a>
 
-### QueryEvents.queryError : <code>string</code>
-Triggered when there was an error executing a query on the Search API.The string value is 'querySuccess'.
+### QueryEvents.queryError : <code>String</code>
+Triggered when there was an error executing a query on the Search API.The String value is 'querySuccess'.
 
 **Kind**: static property of [<code>QueryEvents</code>](#QueryEvents)  
 <a name="QueryEvents.querySuccess"></a>
 
-### QueryEvents.querySuccess : <code>string</code>
-Triggered when a query successfully returns from the Search API.The string value is 'querySuccess'.
+### QueryEvents.querySuccess : <code>String</code>
+Triggered when a query successfully returns from the Search API.The String value is 'querySuccess'.
 
 **Kind**: static property of [<code>QueryEvents</code>](#QueryEvents)  

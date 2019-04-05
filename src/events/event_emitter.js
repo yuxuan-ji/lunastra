@@ -13,8 +13,8 @@ export class EventEmitter {
   /**
    * Check whether an event is registered
    * @private
-   * @param {string} event
-   * @return {boolean}
+   * @param {String} event
+   * @return {Boolean}
    */
   hasHandler(event) {
     return event in this.events;
@@ -25,8 +25,8 @@ export class EventEmitter {
    *
    * Can bind a single function to many different events in one call.
    *
-   * @param {string} events the name(s) of events to bind this function to
-   * @param {function} f the function to call when an event is fired
+   * @param {String} events the name(s) of events to bind this function to
+   * @param {Function} f the function to call when an event is fired
    */
   addListener(...args) {
     var f = args.pop();
@@ -42,8 +42,8 @@ export class EventEmitter {
 
   /**
    * Unbind a handler from an event
-   * @param  {string} event
-   * @param  {function} f
+   * @param  {String} event
+   * @param  {Function} f
    */
   removeListener(event, f) {
     if (!this.hasHandler(event)) return;
@@ -58,8 +58,8 @@ export class EventEmitter {
 
   /**
    * Emit an event
-   * @param  {string} event the event to emit
-   * @param {...any} args additional data that the event should expose
+   * @param  {String} event the event to emit
+   * @param {...Any} args additional data that the event should expose
    */
   emit(event, ...args) {
     if (!this.hasHandler(event)) return;

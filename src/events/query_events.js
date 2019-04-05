@@ -7,66 +7,66 @@ export const QueryEvents = {
 
   /**
    * Triggered when the query is being built.
-   * The string value is 'buildingQuery'.
+   * The String value is 'buildingQuery'.
    * @memberof QueryEvents
-   * @type {string}
+   * @type {String}
    */
   buildingQuery: 'buildingQuery',
 
   /**
    * Triggered when the query is done being built.
-   * The string value is 'doneBuildingQuery'.
+   * The String value is 'doneBuildingQuery'.
    * @memberof QueryEvents
-   * @type {string}
+   * @type {String}
    */
   doneBuildingQuery: 'doneBuildingQuery',
 
   /**
    * Triggered when the query is being executed on the Search API.
-   * The string value is 'duringQuery'.
+   * The String value is 'duringQuery'.
    * @memberof QueryEvents
-   * @type {string}
+   * @type {String}
    */
   duringQuery: 'duringQuery',
 
   /**
    * Triggered when a new query is launched.
-   * The string value is 'newQuery'.
+   * The String value is 'newQuery'.
    * @memberof QueryEvents
-   * @type {string}
+   * @type {String}
    */
   newQuery: 'newQuery',
 
   /**
    * Triggered when there is no result for a particular query.
-   * The string value is 'noResults'.
+   * The String value is 'noResults'.
    * @memberof QueryEvents
-   * @type {string}
+   * @type {String}
    */
   noResults: 'noResults',
 
   /**
    * Triggered before the QueryEvents.querySuccess event.
    * This allows external code to modify the results before rendering them.
-   * The string value is 'preprocessResults'.
+   * The String value is 'preprocessResults'.
    * @memberof QueryEvents
-   * @type {string}
+   * @type {String}
    */
   preprocessResults: 'preprocessResults',
 
   /**
    * Triggered when there was an error executing a query on the Search API.
-   * The string value is 'querySuccess'.
+   * The String value is 'querySuccess'.
    * @memberof QueryEvents
-   * @type {string}
+   * @type {String}
    */
   queryError: 'queryError',
 
   /**
    * Triggered when a query successfully returns from the Search API.
-   * The string value is 'querySuccess'.
+   * The String value is 'querySuccess'.
    * @memberof QueryEvents
-   * @type {string}
+   * @type {String}
    */
   querySuccess: 'querySuccess'
 };
