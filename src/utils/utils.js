@@ -1,6 +1,6 @@
 /**
  * Print a warning message to the console
- * @param  {string} message
+ * @param  {String} message
  */
 export function warn(global) {
   return function (message) {
@@ -11,11 +11,11 @@ export function warn(global) {
 }
 
 /**
- * Returns and empty string for null and undefined,
- * otherwise returns the result of the object's
+ * Returns an empty String for null and undefined,
+ * otherwise returns the result of the Object's
  * '.toString()' method
- * @param  {object} obj
- * @return {string}
+ * @param  {Object} obj
+ * @return {String}
  */
 export function toString(obj) {
   if (obj === undefined || obj === null) return "";
@@ -24,9 +24,9 @@ export function toString(obj) {
 }
 
 /**
- * Return a deep copy of the object
- * @param  {object} obj
- * @return {object}
+ * Return a deep copy of the Object
+ * @param  {Object} obj
+ * @return {Object}
  */
 export function clone(obj) {
   if (obj === null || typeof obj !== "object") return obj;
