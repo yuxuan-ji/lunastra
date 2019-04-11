@@ -10,10 +10,11 @@
         <script src="../dist/Lunastra.js"></script>
         <script>
             var doc1 = {id:12, body: "hello world"};
+            var doc2 = {title: 'Foo', body: 'Bar', author: 'foo@bar.baz', date:'foo/bar/baz'};
             var index = Lunastra.init({
                 id: 'id',
                 fields: ['title', 'body'],
-                documents: [doc1]
+                documents: [doc1, doc2]
             });
         </script>
         <div id="1" class="a-div">
