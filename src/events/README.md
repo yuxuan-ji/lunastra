@@ -23,7 +23,7 @@ An event manager for Lunastra.
 
 * [EventEmitter](#EventEmitter)
     * [new exports.EventEmitter()](#new_EventEmitter_new)
-    * [.addListener(events, f)](#EventEmitter+addListener)
+    * [.addListener(...events, f)](#EventEmitter+addListener)
     * [.removeListener(event, f)](#EventEmitter+removeListener)
     * [.emit(event, ...args)](#EventEmitter+emit)
 
@@ -34,14 +34,14 @@ Initialize an event emitter
 
 <a name="EventEmitter+addListener"></a>
 
-### eventEmitter.addListener(events, f)
+### eventEmitter.addListener(...events, f)
 Bind a handler function to a specific event(s).Can bind a single function to many different events in one call.
 
 **Kind**: instance method of [<code>EventEmitter</code>](#EventEmitter)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| events | <code>String</code> | the name(s) of events to bind this function to |
+| ...events | <code>String</code> | the name(s) of events to bind this function to |
 | f | <code>function</code> | the function to call when an event is fired |
 
 <a name="EventEmitter+removeListener"></a>

@@ -28,7 +28,7 @@ A dataset maintained by Lunastra and exposing its public facing API.
     * [.setId(fieldName)](#Index+setId)
     * [.on(...events, f)](#Index+on)
     * [.off(event, f)](#Index+off)
-    * [.saveDocument(save)](#Index+saveDocument) ⇒ <code>this</code>
+    * [.saveDoc(save)](#Index+saveDoc) ⇒ <code>this</code>
     * [.addDoc(doc, emitEvent)](#Index+addDoc)
     * [.removeDocById(id, emitEvent)](#Index+removeDocById)
     * [.removeDoc(doc, emitEvent)](#Index+removeDoc)
@@ -97,9 +97,9 @@ Unbind a handler from an event
 | event | <code>String</code> | 
 | f | <code>function</code> | 
 
-<a name="Index+saveDocument"></a>
+<a name="Index+saveDoc"></a>
 
-### index.saveDocument(save) ⇒ <code>this</code>
+### index.saveDoc(save) ⇒ <code>this</code>
 Sets whether origin JSON documents are stored
 
 **Kind**: instance method of [<code>Index</code>](#Index)  
@@ -239,7 +239,11 @@ A helper method to initialize a Lunastra Index
 
 **Kind**: global function  
 
-| Param | Type |
-| --- | --- |
-| config | <code>function</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| config | <code>Object</code> |  |
+| config.id | <code>String</code> | field used to uniquely identify a document (default is 'id') |
+| config.save | <code>Boolean</code> | whether to save documents in the document store (default is true) |
+| config.fields | <code>Array.&lt;String&gt;</code> | fields to be registered in the index |
+| config.documents | <code>Array.&lt;Object&gt;</code> | documents to add to the index |
 
