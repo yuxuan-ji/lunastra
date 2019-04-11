@@ -23,6 +23,7 @@ A dataset maintained by Lunastra and exposing its public facing API.
 
 * [Index](#Index)
     * [new exports.Index()](#new_Index_new)
+    * [.generateIds()](#Index+generateIds)
     * [.getFields()](#Index+getFields) ⇒ <code>Array.&lt;String&gt;</code>
     * [.addField(fieldName)](#Index+addField)
     * [.setId(fieldName)](#Index+setId)
@@ -45,6 +46,12 @@ A dataset maintained by Lunastra and exposing its public facing API.
 ### new exports.Index()
 Initialize an index
 
+<a name="Index+generateIds"></a>
+
+### index.generateIds()
+If called, Lunastra will overwrite the id property of the document witha generated unique number.IMPORTANT: This function should be called before adding documents to the index. It maynot be deactivated after. A generated id starts at 0, and is incremented subsequently.
+
+**Kind**: instance method of [<code>Index</code>](#Index)  
 <a name="Index+getFields"></a>
 
 ### index.getFields() ⇒ <code>Array.&lt;String&gt;</code>
@@ -243,6 +250,7 @@ A helper method to initialize a Lunastra Index
 | --- | --- | --- |
 | config | <code>Object</code> |  |
 | config.id | <code>String</code> | field used to uniquely identify a document (default is 'id') |
+| config.generateIds | <code>Boolean</code> | whether Lunastra should generate ids for you (default is false) |
 | config.save | <code>Boolean</code> | whether to save documents in the document store (default is true) |
 | config.fields | <code>Array.&lt;String&gt;</code> | fields to be registered in the index |
 | config.documents | <code>Array.&lt;Object&gt;</code> | documents to add to the index |
