@@ -1635,6 +1635,10 @@ function () {
     this._fields = [];
     this._id = 'id';
     this._idfCache = {};
+    this._generateIds = {
+      active: false,
+      current: 0
+    };
     this.index = {};
     this.pipeline = new _pipeline.Pipeline();
     this.documentStore = new _document_store.DocumentStore();
@@ -1644,12 +1648,25 @@ function () {
     }.bind(this));
   }
   /**
-   * Return the fields registered in the index
-   * @return {String[]}
+   * If called, Lunastra will overwrite the id property of the document with
+   * a generated unique number.
+   *
+   * IMPORTANT: This function should be called before adding documents to the index. It may
+   * not be deactivated after. A generated id starts at 0, and is incremented subsequently.
    */
 
 
   _createClass(Index, [{
+    key: "generateIds",
+    value: function generateIds() {
+      this._generateIds.active = true;
+    }
+    /**
+     * Return the fields registered in the index
+     * @return {String[]}
+     */
+
+  }, {
     key: "getFields",
     value: function getFields() {
       return this._fields.slice();
@@ -1727,7 +1744,13 @@ function () {
     value: function addDoc(doc) {
       var emitEvent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
       if (!doc) return;
+
+      if (this._generateIds.active) {
+        doc[this._id] = ++this._generateIds.current;
+      }
+
       var id = doc[this._id];
+      if (id === null || id === undefined) throw Error('Document missing the id property: ' + this._id);
       this.documentStore.addDoc(id, doc);
 
       this._fields.forEach(function (field) {
@@ -2253,6 +2276,7 @@ Object.keys(_utils).forEach(function (key) {
  * A helper method to initialize a Lunastra Index
  * @param  {Object} config
  * @param {String} config.id field used to uniquely identify a document (default is 'id')
+ * @param {Boolean} config.generateIds whether Lunastra should generate ids for you (default is false)
  * @param {Boolean} config.save whether to save documents in the document store (default is true)
  * @param {String[]} config.fields fields to be registered in the index
  * @param {Object[]} config.documents documents to add to the index
@@ -2262,6 +2286,7 @@ function init(config) {
   var index = new _index.Index();
   index.pipeline.add(_trimmer.Trimmer.trimmer, _stop_word_filters.StopWordFilter.stopWordFilter, _stemmer.Stemmer.stemmer);
   if (config.id) index.setId(config.id);
+  if (config.generateIds === true) index.generateIds();
   if (config.save === false) index.saveDoc(false);
 
   if (config.fields && config.fields.length > 0) {
