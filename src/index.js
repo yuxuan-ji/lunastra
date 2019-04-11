@@ -17,6 +17,7 @@ export class Index {
     this._fields = [];
     this._id = 'id';
     this._idfCache = {};
+    this._generateIds = { active: false, current: 0};
 
     this.index = {};
 
@@ -27,6 +28,17 @@ export class Index {
     this.on('add', 'remove', 'update', (function () {
       this._idfCache = {};
     }).bind(this));
+  }
+
+  /**
+   * If called, Lunastra will overwrite the id property of the document with
+   * a generated unique number.
+   *
+   * IMPORTANT: This function should be called before adding documents to the index. It may
+   * not be deactivated after. A generated id starts at 0, and is incremented subsequently.
+   */
+  generateIds() {
+    this._generateIds.active = true;
   }
 
   /**
@@ -92,6 +104,9 @@ export class Index {
   addDoc(doc, emitEvent = true) {
     if (!doc) return;
 
+    if (this._generateIds.active) {
+      doc[this._id] = ++this._generateIds.current;
+    }
     var id = doc[this._id];
     if (id === null || id === undefined) throw Error('Document missing the id property: ' + this._id);
 
