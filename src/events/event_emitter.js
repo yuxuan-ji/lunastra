@@ -25,7 +25,7 @@ export class EventEmitter {
    *
    * Can bind a single function to many different events in one call.
    *
-   * @param {String} events the name(s) of events to bind this function to
+   * @param {...String} events the name(s) of events to bind this function to
    * @param {Function} f the function to call when an event is fired
    */
   addListener(...args) {
