@@ -28,6 +28,7 @@ From there, a simple Index be created like so:
 ```javascript
 var doc1 = {title: 'Foo', body: 'Bar', author: 'foo@bar.baz', date:'foo/bar/baz'};
 var index = Lunastra.init({
+    generateIds: true,
     id: 'id',
     fields: ['title', 'body', 'author', 'date'],
     documents: [doc1]
