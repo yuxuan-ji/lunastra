@@ -9,12 +9,11 @@
     <body>
         <script src="../dist/Lunastra.js"></script>
         <script>
-            var lunastra = Lunastra.init(function(){
-                this.addField('body');
-            });
-            lunastra.addDoc({
-                id:12,
-                body: "hello world"
+            var doc1 = {id:12, body: "hello world"};
+            var index = Lunastra.init({
+                id: 'id',
+                fields: ['title', 'body'],
+                documents: [doc1]
             });
         </script>
         <div id="1" class="a-div">
