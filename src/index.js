@@ -93,6 +93,7 @@ export class Index {
     if (!doc) return;
 
     var id = doc[this._id];
+    if (id === null || id === undefined) throw Error('Document missing the id property: ' + this._id);
 
     this.documentStore.addDoc(id, doc);
     this._fields.forEach(function (field) {
