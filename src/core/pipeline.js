@@ -48,7 +48,7 @@ export class Pipeline {
    */
   before(existingFct, newFct) {
     var pos = this._queue.indexOf(existingFct);
-    if (pos === -1) throw new Error('Cannot find the the requested function to insert after');
+    if (pos === -1) throw new Error('Cannot find the the requested function to insert before');
 
     this._queue.splice(pos, 0, newFct);
   };
