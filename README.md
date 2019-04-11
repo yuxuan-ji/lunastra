@@ -37,7 +37,21 @@ var index = Lunastra.init({
 
 Searching can be done on the indexed fields of the documents:
 ```javascript
-index.search('Bar') // returns [doc1]
+index.search('Bar')
+>> // Returns an array of search results
+[
+    {
+        "id": "1",
+        "score": 0.3068528194400547,
+        "doc": {
+            "title": "Foo",
+            "body": "Bar",
+            "author": "foo@bar.baz",
+            "date": "foo/bar/baz",
+            "id": 1
+        }
+    }
+]
 ```
 
 ## More examples
