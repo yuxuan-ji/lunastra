@@ -15,13 +15,23 @@ Lunastra is a full-text search engine with focus on customization.
 ES6:
 
 ```javascript
-
+import * as Lunastra from './Lunastra.min.js';
 ```
 
 From script:
 
 ```html
+<script src="https://cdn.jsdelivr.net/gh/yuxuan-ji/lunastra@master/dist/Lunastra.min.js"></script>
+```
 
+From there, a simple Index can be created:
+```javascript
+var doc1 = {title: 'Foo', body: 'Bar', author: 'foo@bar.baz', date:'foo/bar/baz'};
+var index = Lunastra.init({
+    id: 'id',
+    fields: ['title', 'body', 'author', 'date'],
+    documents: [doc1]
+});
 ```
 
 ## More examples
