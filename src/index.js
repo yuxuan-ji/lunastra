@@ -79,7 +79,7 @@ export class Index {
    * @param  {Boolean} save default true
    * @return {this}
    */
-  saveDocument(save) {
+  saveDoc(save) {
     this.documentStore = new DocumentStore(save);
     return this;
   }
