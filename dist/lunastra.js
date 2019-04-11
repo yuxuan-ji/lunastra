@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define("lunastra", [], factory);
+		define("Lunastra", [], factory);
 	else if(typeof exports === 'object')
-		exports["lunastra"] = factory();
+		exports["Lunastra"] = factory();
 	else
-		root["lunastra"] = factory();
+		root["Lunastra"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -2328,4 +2328,4 @@ function clone(obj) {
 
 /******/ });
 });
-//# sourceMappingURL=lunastra.js.map
+//# sourceMappingURL=Lunastra.js.map

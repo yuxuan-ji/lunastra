@@ -241,5 +241,5 @@ A helper method to initialize a Lunastra Index
 
 | Param | Type |
 | --- | --- |
-| config | <code>Object</code> | 
+| config | <code>function</code> | 
 
