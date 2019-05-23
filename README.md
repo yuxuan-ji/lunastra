@@ -86,7 +86,7 @@ npm run test
 
 ## Acknowledgement
 
-Lunastra was built upon a partial ES6 revamp of [Elasticlunr](https://github.com/weixsong/elasticlunr.js) (you can find this partial module in the _base_ branch).
+Lunastra is inspired by [Lunr](https://github.com/olivernn/lunr.js/), [Elasticlunr](https://github.com/weixsong/elasticlunr.js), and [Coveo](https://github.com/coveo/search-ui).
 
 ## Contributing
 
