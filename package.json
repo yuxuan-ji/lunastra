@@ -47,7 +47,7 @@
     "babel-preset-env": "^7.0.0-beta.3",
     "babel-register": "^7.0.0-beta.3",
     "cross-env": "^5.2.0",
-    "doxx": "1.4.0",
+    "doxx": "2.1.1",
     "eslint": "^5.0.1",
     "eslint-loader": "^2.0.0",
     "jsdoc-to-markdown": "^4.0.1",
